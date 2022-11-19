@@ -11,9 +11,9 @@ import {
 import { useChirpWebView } from '@jeanisahakyan/chirp';
 
 export function Webview() {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<any>([]);
   const [bridge, state, Component] = useChirpWebView({
-    webview_url: `http://localhost:19007/bridge`,
+    webview_url: `/bridge`,
   });
   console.log(state);
   useEffect(() => {

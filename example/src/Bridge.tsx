@@ -4,7 +4,7 @@ import { chirpBridge } from '@jeanisahakyan/chirp';
 import { useEffect, useState } from 'react';
 
 export function Bridge() {
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<any[]>([]);
   useEffect(() => {
     chirpBridge
       .init({

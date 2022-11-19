@@ -1,16 +1,11 @@
 import type { BridgeHandlers, BridgeListener } from './types';
 import type { BridgeInternal } from './BridgeInternal';
-import { version } from '../../package.json';
 
 export class BridgeBase {
   private bridge: BridgeInternal;
 
   constructor(bridge: BridgeInternal) {
     this.bridge = bridge;
-  }
-
-  public get version() {
-    return version;
   }
 
   public supports = (method: string) => this.bridge.supports(method);

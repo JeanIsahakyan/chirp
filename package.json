@@ -1,6 +1,6 @@
 {
   "name": "@jeanisahakyan/chirp",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Chirp is a simple bridge for communicate between webview, iframe and web app",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

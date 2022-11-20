@@ -111,7 +111,7 @@ export class BridgeInternal {
       if (!this.handlers.hasOwnProperty(method)) {
         reject({
           error_type: BridgeErrorType.UNSUPPORTED_METHOD,
-          error: Error(`Handler for "${method}" is not registered`),
+          error: Error(`Handler for «${method}» is not registered`),
         });
         return;
       }
@@ -126,7 +126,7 @@ export class BridgeInternal {
       if (!handler) {
         reject({
           error_type: BridgeErrorType.UNSUPPORTED_METHOD,
-          error: Error(`Handler for "${method}" is undefined`),
+          error: Error(`Handler for «${method}» is undefined`),
         });
         return;
       }

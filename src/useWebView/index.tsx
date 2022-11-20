@@ -15,6 +15,7 @@ interface BridgeOptions {
 }
 
 interface ComponentProps {
+  onError?: (error: any) => void;
   style?: any;
 }
 
@@ -49,7 +50,7 @@ export const useChirpWebView = ({
           onLoad={onLoad}
           ref={webViewRef}
           javaScriptEnabled={true}
-          mixedContentMode={'always'}
+          mixedContentMode="always"
           source={{ uri: webview_url }}
           onMessage={onMessage}
         />

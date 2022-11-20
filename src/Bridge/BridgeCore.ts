@@ -35,6 +35,10 @@ export class BridgeCore {
     if (!data) {
       return;
     }
+    // in some platforms such as ios we will receive json object with additional quotes
+    if (data.startsWith("'") && data.endsWith("'")) {
+      data = data.substring(1, data.length - 1);
+    }
     if (!BridgeCore.isJSONObject(data)) {
       // We need object for handling
       return;
@@ -71,7 +75,7 @@ export class BridgeCore {
   static sendEvent = (event: Event): void => {
     const bridgeEvent = BridgeCore.wrapBridgeEvent(event);
     if (isReactNativeWebView) {
-      return RNW.postMessage(bridgeEvent, '*');
+      return RNW.postMessage(`'${bridgeEvent}'`);
     }
     if (window.parent === window) {
       return;

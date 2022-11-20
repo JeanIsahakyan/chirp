@@ -19,14 +19,16 @@ export type BridgeCoreListener = (event: Event) => void;
 export class BridgeCore {
   private static BRIDGE_EVENT_TYPE = 'BridgeEvent';
 
-  private static isJSONObject = (str: string) =>
-    str.startsWith('{') && str.endsWith('}');
+  private static isJSONObject = (str: string) => {
+    return str.startsWith('{') && str.endsWith('}');
+  };
 
-  public static wrapBridgeEvent = (event: Event): string =>
-    JSON.stringify({
+  public static wrapBridgeEvent = (event: Event): string => {
+    return JSON.stringify({
       event,
       type: BridgeCore.BRIDGE_EVENT_TYPE,
     });
+  };
 
   static wrapListener = (listener: BridgeCoreListener) => (data?: string) => {
     if (typeof data !== 'string') {

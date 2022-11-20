@@ -15,7 +15,6 @@ export function Webview() {
   const [bridge, state, Component] = useChirpWebView({
     webview_url: `/bridge`,
   });
-  console.log(state);
   useEffect(() => {
     if (state) {
       bridge

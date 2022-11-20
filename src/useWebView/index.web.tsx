@@ -15,6 +15,7 @@ interface BridgeOptions {
 }
 
 interface ComponentProps {
+  onError: (error: any) => void;
   style?: any;
 }
 

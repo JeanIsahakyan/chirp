@@ -1,4 +1,4 @@
-const RNW = (window as any).ReactNativeWebView;
+const RNW = window?.ReactNativeWebView;
 const isReactNativeWebView = RNW && typeof RNW.postMessage === 'function';
 
 export type Event = any;
@@ -79,7 +79,7 @@ export class BridgeCore {
     if (isReactNativeWebView) {
       return RNW.postMessage(`'${bridgeEvent}'`);
     }
-    if (window.parent === window) {
+    if (!window || window.parent === window) {
       return;
     }
     return window.parent.postMessage(bridgeEvent, '*');

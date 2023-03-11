@@ -1,4 +1,10 @@
 import { chirpBridge } from './Bridge';
 
-// @ts-ignore
+declare global {
+  interface Window {
+    ReactNativeWebView?: any;
+    chirpBridge: any;
+  }
+}
+
 window.chirpBridge = chirpBridge;

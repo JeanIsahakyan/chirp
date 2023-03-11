@@ -1,6 +1,3 @@
-const RNW = window?.ReactNativeWebView;
-const isReactNativeWebView = RNW && typeof RNW.postMessage === 'function';
-
 export type Event = any;
 
 interface BridgeCoreEvent {
@@ -76,10 +73,15 @@ export class BridgeCore {
 
   static sendEvent = (event: Event): void => {
     const bridgeEvent = BridgeCore.wrapBridgeEvent(event);
-    if (isReactNativeWebView) {
+    if (typeof window === 'undefined') {
+      console.warn('Window is undefined');
+      return;
+    }
+    const RNW = window?.ReactNativeWebView;
+    if (typeof RNW?.postMessage === 'function') {
       return RNW.postMessage(`'${bridgeEvent}'`);
     }
-    if (!window || window.parent === window) {
+    if (window.parent === window) {
       return;
     }
     return window.parent.postMessage(bridgeEvent, '*');

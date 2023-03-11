@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, View, Text, FlatList, Button } from 'react-native';
-import { chirpBridge } from '@jeanisahakyan/chirp';
+import { ChirpBridge } from '@jeanisahakyan/chirp';
 import { useEffect, useState } from 'react';
+
+const chirpBridge = new ChirpBridge();
 
 export function Bridge() {
   const [events, setEvents] = useState<any[]>([]);

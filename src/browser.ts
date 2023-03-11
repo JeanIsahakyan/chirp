@@ -1,4 +1,4 @@
-import { chirpBridge } from './Bridge';
+import { ChirpBridge } from './Bridge';
 
 declare global {
   interface Window {
@@ -7,4 +7,4 @@ declare global {
   }
 }
 
-window.chirpBridge = chirpBridge;
+window.chirpBridge = new ChirpBridge();

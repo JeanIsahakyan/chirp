@@ -24,8 +24,15 @@
   },
   "keywords": [
     "react-native",
+    "webview",
+    "iframe",
+    "bridge",
+    "communication",
+    "typescript",
     "ios",
-    "android"
+    "android",
+    "web",
+    "cross-platform"
   ],
   "repository": "https://github.com/JeanIsahakyan/chirp",
   "author": "Jean Isahakyan <jeanisahkyan@gmail.com> (https://github.com/JeanIsahakyan)",
@@ -34,6 +41,7 @@
     "url": "https://github.com/JeanIsahakyan/chirp/issues"
   },
   "homepage": "https://github.com/JeanIsahakyan/chirp#readme",
+  "documentation": "https://github.com/JeanIsahakyan/chirp/tree/main/docs",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"

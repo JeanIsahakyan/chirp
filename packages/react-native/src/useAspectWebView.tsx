@@ -103,7 +103,9 @@ export const useAspectWebView = ({
 
   const onMessage = useMemo(
     () => {
-      const listener = BridgeCore.webViewListener(bridge.handleCoreEvent);
+      const listener = BridgeCore.webViewListener(
+        bridge.handleCoreEvent as (event: unknown) => void
+      );
       return (event: WebViewMessageEvent) => {
         listener({
           nativeEvent: {

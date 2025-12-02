@@ -25,18 +25,20 @@ import type { BridgeOptions } from './types';
  * ```
  */
 export class AspectBridge extends BridgeBase {
-  private unsubscribe: VoidFunction;
+  private cleanupSubscription: VoidFunction;
 
   constructor(options?: BridgeOptions) {
     const bridge = new BridgeInternal(BridgeCore.sendEvent, options);
     super(bridge);
-    this.unsubscribe = BridgeCore.subscribe(bridge.handleCoreEvent);
+    this.cleanupSubscription = BridgeCore.subscribe(
+      bridge.handleCoreEvent as (event: unknown) => void
+    );
   }
 
   /**
    * Cleanup bridge subscriptions
    */
   public destroy = (): void => {
-    this.unsubscribe();
+    this.cleanupSubscription();
   };
 }

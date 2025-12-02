@@ -1,4 +1,4 @@
-import React, {
+import {
   FunctionComponent,
   useCallback,
   useEffect,
@@ -101,7 +101,9 @@ export const useAspectWebView = ({
   const publicBridge = useMemo(() => new BridgeBase(bridge), [bridge]);
 
   useEffect(() => {
-    const unsubscribe = BridgeCore.subscribe(bridge.handleCoreEvent);
+    const unsubscribe = BridgeCore.subscribe(
+      bridge.handleCoreEvent as (event: unknown) => void
+    );
     return () => unsubscribe();
   }, [bridge]);
 

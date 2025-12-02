@@ -1,39 +1,8 @@
 {
-  "name": "@jeanisahakyan/chirp",
-  "version": "0.1.11",
-  "description": "Chirp is a simple bridge for communicate between webview, iframe and web app",
-  "main": "lib/commonjs/index",
-  "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
-  "private": false,
-  "files": [
-    "src",
-    "lib",
-    "!**/.*"
-  ],
-  "scripts": {
-    "typescript": "tsc --noEmit",
-    "lint": "eslint \"**/*.{js,ts,tsx}\"",
-    "prepare": "bob build && yarn prepare-browser",
-    "release": "release-it",
-    "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn install",
-    "prepare-browser": "rollup -c"
-  },
-  "keywords": [
-    "react-native",
-    "webview",
-    "iframe",
-    "bridge",
-    "communication",
-    "typescript",
-    "ios",
-    "android",
-    "web",
-    "cross-platform"
-  ],
+  "name": "chirp-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Chirp - A powerful communication bridge framework for React Native, Web, and iframes",
   "repository": "https://github.com/JeanIsahakyan/chirp",
   "author": "Jean Isahakyan <jeanisahkyan@gmail.com> (https://github.com/JeanIsahakyan)",
   "license": "MIT",
@@ -41,122 +10,47 @@
     "url": "https://github.com/JeanIsahakyan/chirp/issues"
   },
   "homepage": "https://github.com/JeanIsahakyan/chirp#readme",
-  "documentation": "https://github.com/JeanIsahakyan/chirp/tree/main/docs",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:core": "pnpm --filter @aspect/core build",
+    "build:web": "pnpm --filter @aspect/web build",
+    "build:react-native": "pnpm --filter @aspect/react-native build",
+    "build:react-native-web": "pnpm --filter @aspect/react-native-web build",
+    "dev": "pnpm -r --parallel dev",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r clean && rimraf node_modules",
+    "release": "pnpm build && changeset publish",
+    "version": "changeset version"
   },
   "devDependencies": {
-    "@arkweid/lefthook": "^0.7.7",
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.10.0",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.2",
     "@commitlint/config-conventional": "^17.0.2",
-    "@react-native-community/eslint-config": "^3.0.2",
-    "@release-it/conventional-changelog": "^5.0.0",
-    "@types/jest": "^28.1.2",
-    "@types/react": "~17.0.21",
-    "@types/react-native": "0.70.0",
-    "babel-loader": "^8.2.5",
     "commitlint": "^17.0.2",
-    "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^28.1.1",
-    "pod-install": "^0.1.0",
-    "prettier": "^2.0.5",
-    "react": "18.1.0",
-    "react-native": "0.70.5",
-    "react-native-builder-bob": "^0.20.1",
-    "react-native-webview": "11.23.0",
-    "release-it": "^15.0.0",
-    "typescript": "^4.5.2",
-    "rollup": "^2.0.6",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-bundle-size": "^1.0.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-typescript2": "^0.24.2",
-    "rollup-plugin-uglify": "^6.0.4"
+    "prettier": "^2.0.5"
   },
-  "resolutions": {
-    "@types/react": "17.0.21"
-  },
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*",
-    "react-native-webview": "*"
-  },
-  "jest": {
-    "preset": "react-native",
-    "modulePathIgnorePatterns": [
-      "<rootDir>/example/node_modules",
-      "<rootDir>/lib/"
-    ]
+  "packageManager": "pnpm@8.10.0",
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore: release ${version}",
-      "tagName": "v${version}"
-    },
-    "npm": {
-      "publish": true
-    },
-    "github": {
-      "release": true
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "angular"
-      }
-    }
-  },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "@react-native-community",
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "quoteProps": "consistent",
-          "singleQuote": true,
-          "tabWidth": 2,
-          "trailingComma": "es5",
-          "useTabs": false
-        }
-      ]
-    }
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "lib/"
-  ],
   "prettier": {
     "quoteProps": "consistent",
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5",
     "useTabs": false
-  },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "lib",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ]
   }
 }

@@ -1,31 +1,25 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@jeanisahakyan/chirp": ["./src/index"]
-    },
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "strict": true,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error",
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "noImplicitReturns": true,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "target": "esnext"
-  }
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false
+  },
+  "exclude": ["node_modules", "**/dist/**", "**/lib/**", "**/*.test.ts"]
 }

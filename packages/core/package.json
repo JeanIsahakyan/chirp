@@ -1,0 +1,71 @@
+{
+  "name": "@aspect/core",
+  "version": "0.1.0",
+  "description": "Core bridge framework for cross-platform communication between WebViews, iframes, and web applications",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./browser": {
+      "import": {
+        "types": "./dist/browser.d.mts",
+        "default": "./dist/browser.mjs"
+      },
+      "require": {
+        "types": "./dist/browser.d.ts",
+        "default": "./dist/browser.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "clean": "rimraf dist",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "bridge",
+    "communication",
+    "webview",
+    "iframe",
+    "postmessage",
+    "cross-platform",
+    "typescript"
+  ],
+  "author": "Jean Isahakyan <jeanisahkyan@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JeanIsahakyan/chirp",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/JeanIsahakyan/chirp/issues"
+  },
+  "homepage": "https://github.com/JeanIsahakyan/chirp/tree/main/packages/core#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.2",
+    "rimraf": "^5.0.5"
+  }
+}

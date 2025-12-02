@@ -1,0 +1,84 @@
+{
+  "name": "@aspect/react-native-web",
+  "version": "0.1.0",
+  "description": "React Native Web integration for Chirp bridge - cross-platform support for web, iOS, and Android with iframes",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "clean": "rimraf dist",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": [
+    "react-native-web",
+    "iframe",
+    "bridge",
+    "communication",
+    "expo",
+    "cross-platform",
+    "web"
+  ],
+  "author": "Jean Isahakyan <jeanisahkyan@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JeanIsahakyan/chirp",
+    "directory": "packages/react-native-web"
+  },
+  "bugs": {
+    "url": "https://github.com/JeanIsahakyan/chirp/issues"
+  },
+  "homepage": "https://github.com/JeanIsahakyan/chirp/tree/main/packages/react-native-web#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-native": ">=0.60.0",
+    "react-native-webview": ">=11.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native": {
+      "optional": true
+    },
+    "react-native-webview": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@aspect/core": "workspace:*",
+    "@aspect/web": "workspace:*",
+    "@aspect/react-native": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-native": "^0.72.0",
+    "react": "^18.2.0",
+    "react-native": "^0.72.0",
+    "react-native-webview": "^13.0.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.2",
+    "rimraf": "^5.0.5"
+  }
+}

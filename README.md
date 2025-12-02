@@ -1,238 +1,234 @@
-# @jeanisahakyan/chirp
+# Chirp
 
-Chirp is a powerful communication bridge framework for React Native that enables seamless bidirectional communication between webviews, iframes, and web applications. It provides a unified API for handling complex messaging scenarios across different platforms and environments.
+A powerful, type-safe communication bridge framework for React Native, Web, and iframes.
 
-## 🎯 Goals
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- **Universal Communication**: Enable communication between React Native WebViews, web iframes, and parent windows
-- **Type Safety**: Full TypeScript support with comprehensive type definitions
-- **Cross-Platform**: Works on iOS, Android, and Web platforms
-- **Promise-Based**: Modern async/await API for handling asynchronous operations
-- **Error Handling**: Robust error handling with detailed error types
-- **Event System**: Support for both request-response and event-driven communication patterns
+## Overview
 
-## 📦 Installation
+Chirp enables seamless bidirectional communication between:
+- **React Native apps** and **WebViews**
+- **Web pages** and **iframes**
+- **Universal apps** (React Native Web / Expo) and embedded content
 
-```sh
-yarn add @jeanisahakyan/chirp
-# or
-npm install @jeanisahakyan/chirp
-```
+## Packages
 
-## 🚀 Quick Start
+| Package | Description |
+|---------|-------------|
+| [`@aspect/core`](./packages/core) | Core bridge framework - use inside iframes/WebViews |
+| [`@aspect/web`](./packages/web) | Web/iframe integration with React hooks |
+| [`@aspect/react-native`](./packages/react-native) | React Native WebView integration |
+| [`@aspect/react-native-web`](./packages/react-native-web) | Universal React Native Web support |
 
-### React Native WebView Communication
+## Quick Start
+
+### Scenario 1: Web page embedding an iframe
+
+**Parent page (host):**
 
 ```tsx
-import React, { useEffect } from 'react';
-import { useChirpWebView } from '@jeanisahakyan/chirp';
+import { useChirpIframe } from '@aspect/web';
 
 function App() {
-  const [bridge, loaded, WebViewComponent] = useChirpWebView({
-    webview_url: 'https://your-web-app.com'
+  const [bridge, loaded, Iframe] = useChirpIframe({
+    url: 'https://widget.example.com'
   });
 
   useEffect(() => {
     if (loaded) {
-      // Initialize bridge with handlers
       bridge.init({
-        // Handle messages from webview
-        getUserData: async (params) => {
-          return { userId: 123, name: 'John Doe' };
-        },
-        showAlert: async (params) => {
-          alert(params.message);
-          return { success: true };
-        }
+        getUserData: async () => ({ name: 'John', id: 123 })
       });
     }
-  }, [loaded, bridge]);
+  }, [loaded]);
 
-  const sendToWebView = async () => {
-    try {
-      const result = await bridge.send('updateUI', { theme: 'dark' });
-      console.log('WebView response:', result);
-    } catch (error) {
-      console.error('Communication failed:', error);
-    }
-  };
-
-  return (
-    <View style={{ flex: 1 }}>
-      <Button title="Send to WebView" onPress={sendToWebView} />
-      <WebViewComponent style={{ flex: 1 }} />
-    </View>
-  );
+  return <Iframe style={{ width: '100%', height: 400 }} />;
 }
 ```
 
-### Web Application (Inside WebView/Iframe)
+**iframe content (widget):**
 
-```tsx
-import { ChirpBridge } from '@jeanisahakyan/chirp';
+```typescript
+import { ChirpBridge } from '@aspect/core';
 
-// Initialize the bridge
 const bridge = new ChirpBridge();
-
-// Set up handlers for incoming messages
-bridge.init({
-  updateUI: async (params) => {
-    document.body.style.backgroundColor = params.theme === 'dark' ? '#000' : '#fff';
-    return { updated: true };
-  }
+await bridge.init({
+  greet: async (params) => ({ message: `Hello, ${params.name}!` })
 });
 
-// Send message to parent/React Native app
-const sendToParent = async () => {
-  try {
-    const userData = await bridge.send('getUserData', {});
-    console.log('User data:', userData);
-  } catch (error) {
-    console.error('Failed to get user data:', error);
-  }
-};
+const user = await bridge.send('getUserData');
 ```
 
-### Web Iframe Communication
+### Scenario 2: React Native app with WebView
+
+**React Native app:**
 
 ```tsx
-import { useChirpWebView as useChirpBrowserIframe } from '@jeanisahakyan/chirp';
+import { useChirpWebView } from '@aspect/react-native';
 
-function ParentApp() {
-  const [bridge, loaded, IframeComponent] = useChirpBrowserIframe({
-    webview_url: 'https://your-iframe-content.com'
+function App() {
+  const [bridge, loaded, WebView] = useChirpWebView({
+    url: 'https://webapp.example.com'
   });
 
-  // Same API as WebView communication
   useEffect(() => {
     if (loaded) {
       bridge.init({
-        handleIframeMessage: async (params) => {
-          console.log('Message from iframe:', params);
-          return { received: true };
-        }
+        getDeviceInfo: async () => ({
+          platform: Platform.OS,
+          version: Platform.Version
+        })
       });
     }
-  }, [loaded, bridge]);
+  }, [loaded]);
 
-  return <IframeComponent style={{ width: '100%', height: '400px' }} />;
+  return <WebView style={{ flex: 1 }} />;
 }
 ```
 
-## 🔧 API Reference
+**Web content (inside WebView):**
 
-### ChirpBridge
+```typescript
+import { ChirpBridge } from '@aspect/core';
 
-The main bridge class for web applications.
+const bridge = new ChirpBridge();
+await bridge.init();
 
-#### Methods
-
-- `init(handlers: BridgeHandlers): Promise<boolean>` - Initialize bridge with message handlers
-- `send(method: string, params: object): Promise<any>` - Send message and wait for response
-- `subscribe(listener: BridgeListener): number` - Subscribe to all bridge events
-- `unsubscribe(listener: BridgeListener): void` - Unsubscribe from events
-- `supports(method: string): boolean` - Check if method is supported
-- `isAvailable(): boolean` - Check if bridge is ready for communication
-
-### useChirpWebView Hook
-
-React Native hook for WebView communication.
-
-#### Parameters
-
-- `webview_url: string` - URL of the web content to load
-
-#### Returns
-
-- `[bridge, loaded, Component]` - Bridge instance, loading state, and WebView component
-
-### useChirpBrowserIframe Hook
-
-Web hook for iframe communication (alias for `useChirpWebView`).
-
-## 📋 Message Types
-
-### Request-Response Pattern
-
-```tsx
-// Send a request and wait for response
-const result = await bridge.send('methodName', { param1: 'value' });
+const device = await bridge.send('getDeviceInfo');
+console.log(`Running on ${device.platform}`);
 ```
 
-### Event Subscription
+### Scenario 3: Universal app (Expo / React Native Web)
 
 ```tsx
-// Subscribe to all bridge events
-const listener = (event) => {
-  console.log('Bridge event:', event);
-};
-const subscriptionId = bridge.subscribe(listener);
+import { useChirpWebView } from '@aspect/react-native-web';
 
-// Unsubscribe when done
-bridge.unsubscribe(listener);
+// Same API works on iOS, Android, and Web!
+function App() {
+  const [bridge, loaded, WebView] = useChirpWebView({
+    url: 'https://widget.example.com'
+  });
+
+  return <WebView style={{ flex: 1 }} />;
+}
 ```
 
-## 🛠️ Error Handling
+## Features
 
-The framework provides detailed error types:
+- **Type-safe** - Full TypeScript support with generics
+- **Promise-based** - Modern async/await API
+- **Universal** - Works on iOS, Android, and Web
+- **Bidirectional** - Send and receive messages in both directions
+- **Event-driven** - Subscribe to all bridge events
+- **Error handling** - Typed errors with detailed messages
+- **Timeout protection** - Configurable request timeouts
 
-```tsx
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         Host Context                             │
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │ @aspect/web | @aspect/react-native | @aspect/react-native-web│ │
+│  │                                                              │ │
+│  │  • useChirpIframe() / useChirpWebView()                     │ │
+│  │  • Register handlers                                         │ │
+│  │  • Send requests                                             │ │
+│  └──────────────────────────┬──────────────────────────────────┘ │
+│                             │ postMessage / injectJavaScript     │
+│                             ▼                                    │
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │                   Embedded Context                           │ │
+│  │                     (iframe/WebView)                         │ │
+│  │  ┌───────────────────────────────────────────────────────┐  │ │
+│  │  │  @aspect/core                                          │  │ │
+│  │  │                                                        │  │ │
+│  │  │  • ChirpBridge                                        │  │ │
+│  │  │  • Register handlers                                   │  │ │
+│  │  │  • Send requests                                       │  │ │
+│  │  └───────────────────────────────────────────────────────┘  │ │
+│  └─────────────────────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Installation
+
+Choose the package based on your use case:
+
+```bash
+# Inside an iframe or WebView (embedded content)
+npm install @aspect/core
+
+# Web app embedding an iframe
+npm install @aspect/web
+
+# React Native app with WebView
+npm install @aspect/react-native react-native-webview
+
+# Universal app (Expo / React Native Web)
+npm install @aspect/react-native-web react-native-webview
+```
+
+## Error Handling
+
+```typescript
+import { BridgeErrorType } from '@aspect/core';
+
 try {
-  const result = await bridge.send('methodName', params);
+  const result = await bridge.send('someMethod', params);
 } catch (error) {
   switch (error.error_type) {
-    case 'UNSUPPORTED_METHOD':
-      console.log('Method not supported');
+    case BridgeErrorType.UNSUPPORTED_METHOD:
+      console.log('Method not registered');
       break;
-    case 'METHOD_EXECUTION_TIMEOUT':
-      console.log('Request timed out');
+    case BridgeErrorType.METHOD_EXECUTION_TIMEOUT:
+      console.log('Handler timed out');
       break;
-    case 'BRIDGE_NOT_AVAILABLE':
-      console.log('Bridge not ready');
+    case BridgeErrorType.BRIDGE_NOT_AVAILABLE:
+      console.log('Bridge not initialized');
       break;
-    case 'REJECTED':
-      console.log('Handler rejected:', error.error_message);
+    case BridgeErrorType.REJECTED:
+      console.log('Handler threw error:', error.error_message);
       break;
   }
 }
 ```
 
-## 🏗️ Architecture
+## Examples
 
-Chirp uses a layered architecture:
+See the [examples](./examples) directory:
 
-1. **BridgeCore**: Handles low-level message serialization and platform-specific communication
-2. **BridgeInternal**: Manages request/response lifecycle, error handling, and event routing
-3. **BridgeBase**: Provides the public API interface
-4. **ChirpBridge**: Main class that combines all components
+- [`examples/core`](./examples/core) - Widget running inside iframe/WebView
+- [`examples/web`](./examples/web) - React app embedding an iframe
+- [`examples/react-native`](./examples/react-native) - Universal Expo app
 
-The framework automatically detects the environment and uses the appropriate communication method:
-- `ReactNativeWebView.postMessage()` for React Native WebViews
-- `window.parent.postMessage()` for iframe communication
-- `window.addEventListener('message')` for receiving messages
+## Documentation
 
-## 🔄 Message Flow
+- [API Reference](./docs/API.md)
+- [Architecture](./docs/ARCHITECTURE.md)
+- [Examples](./docs/EXAMPLES.md)
+- [Migration Guide](./docs/MIGRATION.md)
 
-1. **Initialization**: Both sides call `bridge.init()` with their handlers
-2. **Method Registration**: Handlers are registered and availability is synchronized
-3. **Communication**: Messages are sent via `bridge.send()` and handled by registered handlers
-4. **Response**: Handlers return promises that resolve to response data
-5. **Error Handling**: Errors are caught and returned with detailed error information
+## Development
 
-## 📱 Platform Support
+```bash
+# Install dependencies
+pnpm install
 
-- ✅ **React Native iOS**: Full WebView support
-- ✅ **React Native Android**: Full WebView support  
-- ✅ **React Native Web**: Full iframe support
-- ✅ **Web Browsers**: Full iframe and parent window communication
+# Build all packages
+pnpm build
 
-## 🤝 Contributing
+# Run type checking
+pnpm typecheck
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+# Run linting
+pnpm lint
+```
 
-## 📄 License
+## Contributing
 
-MIT
+Contributions are welcome! Please read our [Contributing Guide](./CONTRIBUTING.md) for details.
 
----
+## License
 
+MIT © [Jean Isahakyan](https://github.com/JeanIsahakyan)

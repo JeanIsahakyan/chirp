@@ -28,19 +28,8 @@ describe('BridgeInternal', () => {
       });
     });
 
-    it('should not send Init if methods are the same', async () => {
-      const handlers = {
-        greet: async () => ({ message: 'hello' }),
-      };
-
-      // First init
-      bridge.init(handlers);
-      expect(sendEvent).toHaveBeenCalledTimes(1);
-
-      // Second init with same handlers
-      sendEvent.mockClear();
-      const result = await bridge.init(handlers);
-
+    it('should resolve immediately if called with empty handlers', async () => {
+      const result = await bridge.init({});
       expect(result).toBe(true);
       expect(sendEvent).not.toHaveBeenCalled();
     });
@@ -79,7 +68,21 @@ describe('BridgeInternal', () => {
 
     it('should handle Request event and call handler', async () => {
       const handler = vi.fn().mockResolvedValue({ success: true });
-      await bridge.init({ greet: handler });
+
+      // First initialize the bridge by receiving Init from other side
+      bridge.handleCoreEvent({
+        type: BridgeEventType.Init,
+        data: { methods: [] },
+      });
+
+      // Start init and simulate InitResult response
+      const initPromise = bridge.init({ greet: handler });
+      bridge.handleCoreEvent({
+        type: BridgeEventType.InitResult,
+        data: true,
+      });
+      await initPromise;
+      sendEvent.mockClear();
 
       bridge.handleCoreEvent({
         type: BridgeEventType.Request,
@@ -91,14 +94,27 @@ describe('BridgeInternal', () => {
       });
 
       // Wait for async handler
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await new Promise((resolve) => setTimeout(resolve, 50));
 
       expect(handler).toHaveBeenCalledWith({ name: 'John' });
     });
 
     it('should send success result after handler completes', async () => {
       const handler = vi.fn().mockResolvedValue({ message: 'Hello!' });
-      await bridge.init({ greet: handler });
+
+      // Initialize bridge
+      bridge.handleCoreEvent({
+        type: BridgeEventType.Init,
+        data: { methods: [] },
+      });
+
+      const initPromise = bridge.init({ greet: handler });
+      bridge.handleCoreEvent({
+        type: BridgeEventType.InitResult,
+        data: true,
+      });
+      await initPromise;
+      sendEvent.mockClear();
 
       bridge.handleCoreEvent({
         type: BridgeEventType.Request,
@@ -109,7 +125,7 @@ describe('BridgeInternal', () => {
         },
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await new Promise((resolve) => setTimeout(resolve, 50));
 
       expect(sendEvent).toHaveBeenCalledWith({
         type: BridgeEventType.Result,
@@ -132,7 +148,7 @@ describe('BridgeInternal', () => {
         },
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await new Promise((resolve) => setTimeout(resolve, 50));
 
       expect(sendEvent).toHaveBeenCalledWith({
         type: BridgeEventType.Result,
@@ -150,7 +166,20 @@ describe('BridgeInternal', () => {
 
     it('should send error result when handler throws', async () => {
       const handler = vi.fn().mockRejectedValue(new Error('Handler error'));
-      await bridge.init({ failing: handler });
+
+      // Initialize bridge
+      bridge.handleCoreEvent({
+        type: BridgeEventType.Init,
+        data: { methods: [] },
+      });
+
+      const initPromise = bridge.init({ failing: handler });
+      bridge.handleCoreEvent({
+        type: BridgeEventType.InitResult,
+        data: true,
+      });
+      await initPromise;
+      sendEvent.mockClear();
 
       bridge.handleCoreEvent({
         type: BridgeEventType.Request,
@@ -161,7 +190,7 @@ describe('BridgeInternal', () => {
         },
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await new Promise((resolve) => setTimeout(resolve, 50));
 
       expect(sendEvent).toHaveBeenCalledWith({
         type: BridgeEventType.Result,
@@ -326,10 +355,23 @@ describe('BridgeInternal', () => {
       vi.useFakeTimers();
 
       const customBridge = new BridgeInternal(sendEvent, { timeout: 100 });
+
+      // Initialize bridge first
+      customBridge.handleCoreEvent({
+        type: BridgeEventType.Init,
+        data: { methods: [] },
+      });
+
       const slowHandler = vi.fn().mockImplementation(
         () => new Promise((resolve) => setTimeout(resolve, 200))
       );
-      await customBridge.init({ slow: slowHandler });
+      const initPromise = customBridge.init({ slow: slowHandler });
+      customBridge.handleCoreEvent({
+        type: BridgeEventType.InitResult,
+        data: true,
+      });
+      await initPromise;
+      sendEvent.mockClear();
 
       customBridge.handleCoreEvent({
         type: BridgeEventType.Request,
@@ -340,7 +382,7 @@ describe('BridgeInternal', () => {
         },
       });
 
-      vi.advanceTimersByTime(150);
+      await vi.advanceTimersByTimeAsync(150);
 
       expect(sendEvent).toHaveBeenCalledWith({
         type: BridgeEventType.Result,

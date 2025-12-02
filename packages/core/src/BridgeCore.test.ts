@@ -157,21 +157,25 @@ describe('BridgeCore', () => {
   });
 
   describe('sendEvent', () => {
-    let originalWindow: Window & typeof globalThis;
     let originalParent: Window;
+    let originalRNW: typeof window.ReactNativeWebView;
 
     beforeEach(() => {
-      originalWindow = global.window;
       originalParent = window.parent;
+      originalRNW = window.ReactNativeWebView;
     });
 
     afterEach(() => {
-      global.window = originalWindow;
-      (window as any).parent = originalParent;
-      delete (window as any).ReactNativeWebView;
+      Object.defineProperty(window, 'parent', {
+        value: originalParent,
+        writable: true,
+        configurable: true,
+      });
+      (window as any).ReactNativeWebView = originalRNW;
     });
 
     it('should send to iframe parent when available', () => {
+      (window as any).ReactNativeWebView = undefined;
       const mockParent = {
         postMessage: vi.fn(),
       };
@@ -203,7 +207,7 @@ describe('BridgeCore', () => {
     });
 
     it('should not send when window.parent === window (top level)', () => {
-      delete (window as any).ReactNativeWebView;
+      (window as any).ReactNativeWebView = undefined;
       Object.defineProperty(window, 'parent', {
         value: window,
         writable: true,

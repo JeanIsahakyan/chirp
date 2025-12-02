@@ -4,15 +4,15 @@
  * This file is used by Metro bundler for iOS/Android builds.
  */
 export {
-  useChirpWebView,
-  type UseChirpWebViewOptions,
-  type UseChirpWebViewReturn,
-  type ChirpWebViewProps,
+  useAspectWebView,
+  type UseAspectWebViewOptions,
+  type UseAspectWebViewReturn,
+  type AspectWebViewProps,
 } from '@aspect/react-native';
 
 // Re-export core types for convenience
 export {
-  ChirpBridge,
+  AspectBridge,
   BridgeBase,
   BridgeErrorType,
   BridgeEventType,

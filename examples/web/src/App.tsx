@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useChirpIframe, BridgeResultEvent } from '@aspect/web';
+import { useAspectIframe, BridgeResultEvent } from '@aspect/web';
 
 interface LogEntry {
   time: string;
@@ -8,7 +8,7 @@ interface LogEntry {
 }
 
 function App() {
-  const [bridge, loaded, Iframe] = useChirpIframe({
+  const [bridge, loaded, Iframe] = useAspectIframe({
     url: 'http://localhost:3001/index.html',
   });
 

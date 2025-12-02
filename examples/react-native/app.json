@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Chirp Example",
-    "slug": "chirp-example",
+    "name": "Aspect Example",
+    "slug": "aspect-example",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

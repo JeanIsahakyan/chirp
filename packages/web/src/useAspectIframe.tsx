@@ -16,9 +16,9 @@ import {
 } from '@aspect/core';
 
 /**
- * Options for the useChirpIframe hook
+ * Options for the useAspectIframe hook
  */
-export interface UseChirpIframeOptions extends BridgeOptions {
+export interface UseAspectIframeOptions extends BridgeOptions {
   /** URL to load in the iframe */
   url: string;
 }
@@ -26,7 +26,7 @@ export interface UseChirpIframeOptions extends BridgeOptions {
 /**
  * Props for the iframe component
  */
-export interface ChirpIframeProps
+export interface AspectIframeProps
   extends Omit<IframeHTMLAttributes<HTMLIFrameElement>, 'src' | 'onLoad'> {
   /** Optional error handler */
   onError?: (error: unknown) => void;
@@ -35,26 +35,26 @@ export interface ChirpIframeProps
 }
 
 /**
- * Return type for useChirpIframe hook
+ * Return type for useAspectIframe hook
  */
-export type UseChirpIframeReturn = [
+export type UseAspectIframeReturn = [
   /** Bridge instance for communication */
   bridge: BridgeBase,
   /** Whether the iframe has loaded */
   loaded: boolean,
   /** React component to render the iframe */
-  IframeComponent: FunctionComponent<ChirpIframeProps>
+  IframeComponent: FunctionComponent<AspectIframeProps>
 ];
 
 /**
- * React hook for embedding an iframe and communicating with it via Chirp bridge.
+ * React hook for embedding an iframe and communicating with it via Aspect bridge.
  *
  * @example
  * ```tsx
- * import { useChirpIframe } from '@aspect/web';
+ * import { useAspectIframe } from '@aspect/web';
  *
  * function App() {
- *   const [bridge, loaded, Iframe] = useChirpIframe({
+ *   const [bridge, loaded, Iframe] = useAspectIframe({
  *     url: 'https://example.com/widget'
  *   });
  *
@@ -80,10 +80,10 @@ export type UseChirpIframeReturn = [
  * }
  * ```
  */
-export const useChirpIframe = ({
+export const useAspectIframe = ({
   url,
   timeout,
-}: UseChirpIframeOptions): UseChirpIframeReturn => {
+}: UseAspectIframeOptions): UseAspectIframeReturn => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -103,8 +103,8 @@ export const useChirpIframe = ({
 
   const onLoad = useCallback(() => setLoaded(true), []);
 
-  const IframeComponent: FunctionComponent<ChirpIframeProps> = useCallback(
-    ({ style, ...props }: ChirpIframeProps) => {
+  const IframeComponent: FunctionComponent<AspectIframeProps> = useCallback(
+    ({ style, ...props }: AspectIframeProps) => {
       return (
         <iframe
           {...props}

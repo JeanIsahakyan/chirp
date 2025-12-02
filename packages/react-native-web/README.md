@@ -1,6 +1,6 @@
 # @aspect/react-native-web
 
-Cross-platform Chirp bridge integration for React Native Web, Expo, and universal React Native apps.
+Cross-platform Aspect bridge integration for React Native Web, Expo, and universal React Native apps.
 
 ## Installation
 
@@ -36,10 +36,10 @@ This package allows you to write one codebase that works seamlessly across all p
 ```tsx
 import React, { useEffect } from 'react';
 import { View, Text, Button, Platform } from 'react-native';
-import { useChirpWebView } from '@aspect/react-native-web';
+import { useAspectWebView } from '@aspect/react-native-web';
 
 function App() {
-  const [bridge, loaded, WebView] = useChirpWebView({
+  const [bridge, loaded, WebView] = useAspectWebView({
     url: 'https://example.com/widget'
   });
 
@@ -79,10 +79,10 @@ function App() {
 
 ## API Reference
 
-### useChirpWebView
+### useAspectWebView
 
 ```typescript
-const [bridge, loaded, WebViewComponent] = useChirpWebView(options);
+const [bridge, loaded, WebViewComponent] = useAspectWebView(options);
 ```
 
 #### Options
@@ -119,8 +119,8 @@ Accepts all `react-native-webview` props except `source`, `onMessage`, `onLoad`,
 
 The package uses React Native's platform-specific file extensions:
 
-- `index.ts` / `useChirpWebView.tsx` - Web platform (iframe)
-- `index.native.ts` / `useChirpWebView.native.tsx` - iOS/Android (WebView)
+- `index.ts` / `useAspectWebView.tsx` - Web platform (iframe)
+- `index.native.ts` / `useAspectWebView.native.tsx` - iOS/Android (WebView)
 
 This is handled automatically by Metro bundler (React Native) and most web bundlers.
 

@@ -1,16 +1,16 @@
 // Main exports
-export { useChirpIframe } from './useChirpIframe';
+export { useAspectIframe } from './useAspectIframe';
 
 // Type exports
 export type {
-  UseChirpIframeOptions,
-  UseChirpIframeReturn,
-  ChirpIframeProps,
-} from './useChirpIframe';
+  UseAspectIframeOptions,
+  UseAspectIframeReturn,
+  AspectIframeProps,
+} from './useAspectIframe';
 
 // Re-export core types for convenience
 export {
-  ChirpBridge,
+  AspectBridge,
   BridgeBase,
   BridgeErrorType,
   BridgeEventType,

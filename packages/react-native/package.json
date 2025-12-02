@@ -1,7 +1,7 @@
 {
   "name": "@aspect/react-native",
   "version": "0.1.0",
-  "description": "React Native WebView integration for Chirp bridge - communicate with web content in your React Native app",
+  "description": "React Native WebView integration for Aspect bridge - communicate with web content in your React Native app",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -30,7 +30,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx",
     "clean": "rimraf dist",
-    "test": "echo \"No tests yet\""
+    "test": "vitest run"
   },
   "keywords": [
     "react-native",

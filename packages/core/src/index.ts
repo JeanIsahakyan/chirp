@@ -1,5 +1,5 @@
 // Main exports
-export { ChirpBridge } from './ChirpBridge';
+export { AspectBridge } from './AspectBridge';
 export { BridgeBase } from './BridgeBase';
 export { BridgeInternal } from './BridgeInternal';
 export { BridgeCore } from './BridgeCore';

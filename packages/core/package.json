@@ -38,7 +38,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx",
     "clean": "rimraf dist",
-    "test": "echo \"No tests yet\""
+    "test": "vitest run"
   },
   "keywords": [
     "bridge",

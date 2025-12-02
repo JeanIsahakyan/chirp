@@ -1,6 +1,6 @@
 # @aspect/web
 
-React hooks for embedding iframes and communicating with them using the Chirp bridge protocol.
+React hooks for embedding iframes and communicating with them using the Aspect bridge protocol.
 
 ## Installation
 
@@ -24,10 +24,10 @@ yarn add @aspect/web
 ### Parent Page (Host)
 
 ```tsx
-import { useChirpIframe } from '@aspect/web';
+import { useAspectIframe } from '@aspect/web';
 
 function App() {
-  const [bridge, loaded, Iframe] = useChirpIframe({
+  const [bridge, loaded, Iframe] = useAspectIframe({
     url: 'https://example.com/widget'
   });
 
@@ -71,9 +71,9 @@ The iframe should use `@aspect/core`:
 
 ```typescript
 // Inside the iframe
-import { ChirpBridge } from '@aspect/core';
+import { AspectBridge } from '@aspect/core';
 
-const bridge = new ChirpBridge();
+const bridge = new AspectBridge();
 
 // Initialize with handlers
 await bridge.init({
@@ -89,10 +89,10 @@ console.log('User:', user);
 
 ## API Reference
 
-### useChirpIframe
+### useAspectIframe
 
 ```typescript
-const [bridge, loaded, IframeComponent] = useChirpIframe(options);
+const [bridge, loaded, IframeComponent] = useAspectIframe(options);
 ```
 
 #### Options

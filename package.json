@@ -1,8 +1,8 @@
 {
-  "name": "chirp-monorepo",
+  "name": "aspect-monorepo",
   "version": "0.0.0",
   "private": true,
-  "description": "Chirp - A powerful communication bridge framework for React Native, Web, and iframes",
+  "description": "Aspect - A powerful communication bridge framework for React Native, Web, and iframes",
   "repository": "https://github.com/JeanIsahakyan/chirp",
   "author": "Jean Isahakyan <jeanisahkyan@gmail.com> (https://github.com/JeanIsahakyan)",
   "license": "MIT",
@@ -19,7 +19,9 @@
     "dev": "pnpm -r --parallel dev",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r test",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "clean": "pnpm -r clean && rimraf node_modules",
     "release": "pnpm build && changeset publish",
     "version": "changeset version"
@@ -34,7 +36,12 @@
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "vitest": "^1.6.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "jsdom": "^24.0.0",
+    "@testing-library/react": "^14.2.0",
+    "@testing-library/jest-dom": "^6.4.0"
   },
   "packageManager": "pnpm@8.10.0",
   "engines": {

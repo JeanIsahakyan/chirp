@@ -1,6 +1,6 @@
 # Examples
 
-This document provides comprehensive examples of how to use the Chirp framework in different scenarios.
+This document provides comprehensive examples of how to use the Aspect framework in different scenarios.
 
 ## Table of Contents
 
@@ -18,12 +18,12 @@ This document provides comprehensive examples of how to use the Chirp framework 
 ```tsx
 import React, { useEffect, useState } from 'react';
 import { View, Button, Text, StyleSheet } from 'react-native';
-import { useChirpWebView } from '@jeanisahakyan/chirp';
+import { useAspectWebView } from '@aspect/react-native';
 
 function App() {
   const [messages, setMessages] = useState<string[]>([]);
-  const [bridge, loaded, WebViewComponent] = useChirpWebView({
-    webview_url: 'https://your-web-app.com'
+  const [bridge, loaded, WebViewComponent] = useAspectWebView({
+    url: 'https://your-web-app.com'
   });
 
   useEffect(() => {
@@ -106,14 +106,14 @@ const styles = StyleSheet.create({
 
 ```tsx
 import React, { useEffect, useState } from 'react';
-import { ChirpBridge } from '@jeanisahakyan/chirp';
+import { AspectBridge } from '@aspect/core';
 
 function WebApp() {
   const [user, setUser] = useState(null);
   const [appData, setAppData] = useState(null);
   const [messages, setMessages] = useState([]);
-  
-  const bridge = new ChirpBridge();
+
+  const bridge = new AspectBridge();
 
   useEffect(() => {
     // Initialize bridge with handlers
@@ -211,12 +211,12 @@ function WebApp() {
 
 ```tsx
 import React, { useEffect, useState } from 'react';
-import { useChirpWebView as useChirpBrowserIframe } from '@jeanisahakyan/chirp';
+import { useAspectIframe } from '@aspect/web';
 
 function ParentApp() {
   const [notifications, setNotifications] = useState([]);
-  const [bridge, loaded, IframeComponent] = useChirpBrowserIframe({
-    webview_url: 'https://your-iframe-content.com'
+  const [bridge, loaded, IframeComponent] = useAspectIframe({
+    url: 'https://your-iframe-content.com'
   });
 
   useEffect(() => {
@@ -307,13 +307,13 @@ function ParentApp() {
 
 ```tsx
 import React, { useEffect, useState } from 'react';
-import { ChirpBridge } from '@jeanisahakyan/chirp';
+import { AspectBridge } from '@aspect/core';
 
 function IframeContent() {
   const [content, setContent] = useState({ title: 'Default Title', content: 'Default content' });
   const [status, setStatus] = useState('idle');
-  
-  const bridge = new ChirpBridge();
+
+  const bridge = new AspectBridge();
 
   useEffect(() => {
     bridge.init({
@@ -686,4 +686,4 @@ bridge.init({
 });
 ```
 
-These examples demonstrate the flexibility and power of the Chirp framework for building sophisticated cross-platform applications with seamless communication between native and web components.
+These examples demonstrate the flexibility and power of the Aspect framework for building sophisticated cross-platform applications with seamless communication between native and web components.

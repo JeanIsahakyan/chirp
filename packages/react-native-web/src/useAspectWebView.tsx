@@ -15,9 +15,9 @@ import {
 } from '@aspect/core';
 
 /**
- * Options for the useChirpWebView hook (web platform)
+ * Options for the useAspectWebView hook (web platform)
  */
-export interface UseChirpWebViewOptions extends BridgeOptions {
+export interface UseAspectWebViewOptions extends BridgeOptions {
   /** URL to load in the iframe/WebView */
   url: string;
 }
@@ -25,7 +25,7 @@ export interface UseChirpWebViewOptions extends BridgeOptions {
 /**
  * Props for the component (web platform uses iframe)
  */
-export interface ChirpWebViewProps {
+export interface AspectWebViewProps {
   /** Optional error handler */
   onError?: (error: unknown) => void;
   /** Custom styles */
@@ -41,30 +41,30 @@ export interface ChirpWebViewProps {
 }
 
 /**
- * Return type for useChirpWebView hook
+ * Return type for useAspectWebView hook
  */
-export type UseChirpWebViewReturn = [
+export type UseAspectWebViewReturn = [
   /** Bridge instance for communication */
   bridge: BridgeBase,
   /** Whether the content has loaded */
   loaded: boolean,
   /** React component to render the iframe */
-  WebViewComponent: FunctionComponent<ChirpWebViewProps>
+  WebViewComponent: FunctionComponent<AspectWebViewProps>
 ];
 
 /**
  * React hook for React Native Web that provides cross-platform
  * WebView-like functionality using iframes.
  *
- * This hook provides the same API as @aspect/react-native's useChirpWebView
+ * This hook provides the same API as @aspect/react-native's useAspectWebView
  * but uses iframes for the web platform.
  *
  * @example
  * ```tsx
- * import { useChirpWebView } from '@aspect/react-native-web';
+ * import { useAspectWebView } from '@aspect/react-native-web';
  *
  * function App() {
- *   const [bridge, loaded, WebView] = useChirpWebView({
+ *   const [bridge, loaded, WebView] = useAspectWebView({
  *     url: 'https://example.com/widget'
  *   });
  *
@@ -84,10 +84,10 @@ export type UseChirpWebViewReturn = [
  * }
  * ```
  */
-export const useChirpWebView = ({
+export const useAspectWebView = ({
   url,
   timeout,
-}: UseChirpWebViewOptions): UseChirpWebViewReturn => {
+}: UseAspectWebViewOptions): UseAspectWebViewReturn => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -107,8 +107,8 @@ export const useChirpWebView = ({
 
   const onLoad = useCallback(() => setLoaded(true), []);
 
-  const WebViewComponent: FunctionComponent<ChirpWebViewProps> = useCallback(
-    ({ style, className, title, sandbox, allow, ...props }: ChirpWebViewProps) => {
+  const WebViewComponent: FunctionComponent<AspectWebViewProps> = useCallback(
+    ({ style, className, title, sandbox, allow, ...props }: AspectWebViewProps) => {
       return (
         <iframe
           {...props}

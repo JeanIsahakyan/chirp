@@ -18,7 +18,7 @@
     "build:react-native-web": "pnpm --filter @aspect/react-native-web build",
     "dev": "pnpm -r --parallel dev",
     "lint": "pnpm -r lint",
-    "typecheck": "tsc --build tsconfig.build.json",
+    "typecheck": "pnpm -r typecheck",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",

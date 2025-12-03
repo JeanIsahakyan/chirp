@@ -2,17 +2,11 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src",
-    "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@aspect/web": ["./src/index.ts"],
-      "@aspect/core": ["../core/src/index.ts"]
+      "@aspect/web": ["./src/index.ts"]
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"],
-  "references": [
-    { "path": "../core" }
-  ]
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
 }

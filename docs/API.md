@@ -1,29 +1,29 @@
 # API Reference
 
-Complete API documentation for all Aspect packages.
+Complete API documentation for all Aspectly packages.
 
 ## Table of Contents
 
-- [@aspect/core](#aspectcore)
-- [@aspect/web](#aspectweb)
-- [@aspect/react-native](#aspectreact-native)
-- [@aspect/react-native-web](#aspectreact-native-web)
+- [@aspectly/core](#aspectcore)
+- [@aspectly/web](#aspectweb)
+- [@aspectly/react-native](#aspectreact-native)
+- [@aspectly/react-native-web](#aspectreact-native-web)
 - [Types](#types)
 
 ---
 
-## @aspect/core
+## @aspectly/core
 
 The core package provides the bridge implementation for use inside iframes and WebViews.
 
-### AspectBridge
+### AspectlyBridge
 
 The main class for creating a bridge instance inside embedded content.
 
 ```typescript
-import { AspectBridge } from '@aspect/core';
+import { AspectlyBridge } from '@aspectly/core';
 
-const bridge = new AspectBridge(options?: BridgeOptions);
+const bridge = new AspectlyBridge(options?: BridgeOptions);
 ```
 
 #### Constructor Options
@@ -77,16 +77,16 @@ Cleanup bridge subscriptions.
 
 ---
 
-## @aspect/web
+## @aspectly/web
 
 React hooks for embedding iframes in web applications.
 
-### useAspectIframe
+### useAspectlyIframe
 
 ```typescript
-import { useAspectIframe } from '@aspect/web';
+import { useAspectlyIframe } from '@aspectly/web';
 
-const [bridge, loaded, IframeComponent] = useAspectIframe({
+const [bridge, loaded, IframeComponent] = useAspectlyIframe({
   url: 'https://widget.example.com',
   timeout: 100000 // optional
 });
@@ -109,33 +109,33 @@ const [bridge, loaded, IframeComponent] = useAspectIframe({
 
 ---
 
-## @aspect/react-native
+## @aspectly/react-native
 
 React hooks for React Native WebView integration.
 
-### useAspectWebView
+### useAspectlyWebView
 
 ```typescript
-import { useAspectWebView } from '@aspect/react-native';
+import { useAspectlyWebView } from '@aspectly/react-native';
 
-const [bridge, loaded, WebViewComponent] = useAspectWebView({
+const [bridge, loaded, WebViewComponent] = useAspectlyWebView({
   url: 'https://webapp.example.com',
   timeout: 100000 // optional
 });
 ```
 
-Same API as `@aspect/web` but renders a WebView instead of iframe.
+Same API as `@aspectly/web` but renders a WebView instead of iframe.
 
 ---
 
-## @aspect/react-native-web
+## @aspectly/react-native-web
 
 Universal hooks for Expo and React Native Web apps.
 
-### useAspectWebView
+### useAspectlyWebView
 
 ```typescript
-import { useAspectWebView } from '@aspect/react-native-web';
+import { useAspectlyWebView } from '@aspectly/react-native-web';
 ```
 
 Same API, works on Web (iframe), iOS and Android (WebView).

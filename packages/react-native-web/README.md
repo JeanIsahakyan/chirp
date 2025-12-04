@@ -1,18 +1,18 @@
-# @aspect/react-native-web
+# @aspectly/react-native-web
 
-Cross-platform Aspect bridge integration for React Native Web, Expo, and universal React Native apps.
+Cross-platform Aspectly bridge integration for React Native Web, Expo, and universal React Native apps.
 
 ## Installation
 
 ```bash
 # npm
-npm install @aspect/react-native-web
+npm install @aspectly/react-native-web
 
 # pnpm
-pnpm add @aspect/react-native-web
+pnpm add @aspectly/react-native-web
 
 # yarn
-yarn add @aspect/react-native-web
+yarn add @aspectly/react-native-web
 ```
 
 For native platforms, you'll also need:
@@ -24,10 +24,10 @@ cd ios && pod install
 
 ## Overview
 
-`@aspect/react-native-web` provides a unified API for embedding web content in universal React Native apps:
+`@aspectly/react-native-web` provides a unified API for embedding web content in universal React Native apps:
 
 - **Web Platform**: Uses iframes for embedding
-- **iOS/Android**: Uses `react-native-webview` (via `@aspect/react-native`)
+- **iOS/Android**: Uses `react-native-webview` (via `@aspectly/react-native`)
 
 This package allows you to write one codebase that works seamlessly across all platforms.
 
@@ -36,10 +36,10 @@ This package allows you to write one codebase that works seamlessly across all p
 ```tsx
 import React, { useEffect } from 'react';
 import { View, Text, Button, Platform } from 'react-native';
-import { useAspectWebView } from '@aspect/react-native-web';
+import { useAspectlyWebView } from '@aspectly/react-native-web';
 
 function App() {
-  const [bridge, loaded, WebView] = useAspectWebView({
+  const [bridge, loaded, WebView] = useAspectlyWebView({
     url: 'https://example.com/widget'
   });
 
@@ -79,10 +79,10 @@ function App() {
 
 ## API Reference
 
-### useAspectWebView
+### useAspectlyWebView
 
 ```typescript
-const [bridge, loaded, WebViewComponent] = useAspectWebView(options);
+const [bridge, loaded, WebViewComponent] = useAspectlyWebView(options);
 ```
 
 #### Options
@@ -119,8 +119,8 @@ Accepts all `react-native-webview` props except `source`, `onMessage`, `onLoad`,
 
 The package uses React Native's platform-specific file extensions:
 
-- `index.ts` / `useAspectWebView.tsx` - Web platform (iframe)
-- `index.native.ts` / `useAspectWebView.native.tsx` - iOS/Android (WebView)
+- `index.ts` / `useAspectlyWebView.tsx` - Web platform (iframe)
+- `index.native.ts` / `useAspectlyWebView.native.tsx` - iOS/Android (WebView)
 
 This is handled automatically by Metro bundler (React Native) and most web bundlers.
 
@@ -176,7 +176,7 @@ This package works great with Expo:
 
 ```bash
 # Install in an Expo project
-npx expo install @aspect/react-native-web react-native-webview
+npx expo install @aspectly/react-native-web react-native-webview
 ```
 
 Works automatically with:
@@ -217,18 +217,18 @@ module.exports = {
 
 ## Related Packages
 
-- [`@aspect/core`](../core) - Core bridge framework
-- [`@aspect/web`](../web) - Web/iframe integration (standalone)
-- [`@aspect/react-native`](../react-native) - React Native WebView integration
+- [`@aspectly/core`](../core) - Core bridge framework
+- [`@aspectly/web`](../web) - Web/iframe integration (standalone)
+- [`@aspectly/react-native`](../react-native) - React Native WebView integration
 
 ## When to Use Which Package
 
 | Package | Use Case |
 |---------|----------|
-| `@aspect/react-native-web` | Universal apps (Expo/RN Web) |
-| `@aspect/react-native` | Native-only apps |
-| `@aspect/web` | Web-only apps |
-| `@aspect/core` | Inside WebViews/iframes |
+| `@aspectly/react-native-web` | Universal apps (Expo/RN Web) |
+| `@aspectly/react-native` | Native-only apps |
+| `@aspectly/web` | Web-only apps |
+| `@aspectly/core` | Inside WebViews/iframes |
 
 ## License
 

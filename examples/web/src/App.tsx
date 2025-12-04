@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useAspectIframe, BridgeResultEvent } from '@aspect/web';
+import { useAspectlyIframe, BridgeResultEvent } from '@aspectly/web';
 
 interface LogEntry {
   time: string;
@@ -8,7 +8,7 @@ interface LogEntry {
 }
 
 function App() {
-  const [bridge, loaded, Iframe] = useAspectIframe({
+  const [bridge, loaded, Iframe] = useAspectlyIframe({
     url: 'http://localhost:3001/index.html',
   });
 
@@ -98,7 +98,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1>@aspect/web Example</h1>
+        <h1>@aspectly/web Example</h1>
         <p>Parent application embedding an iframe widget</p>
       </header>
 

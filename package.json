@@ -1,21 +1,21 @@
 {
-  "name": "aspect-monorepo",
+  "name": "aspectly-monorepo",
   "version": "0.0.0",
   "private": true,
-  "description": "Aspect - A powerful communication bridge framework for React Native, Web, and iframes",
-  "repository": "https://github.com/JeanIsahakyan/aspect",
+  "description": "Aspectly - A powerful communication bridge framework for React Native, Web, and iframes",
+  "repository": "https://github.com/JeanIsahakyan/aspectly",
   "author": "Jean Isahakyan <jeanisahkyan@gmail.com> (https://github.com/JeanIsahakyan)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JeanIsahakyan/aspect/issues"
+    "url": "https://github.com/JeanIsahakyan/aspectly/issues"
   },
-  "homepage": "https://github.com/JeanIsahakyan/aspect#readme",
+  "homepage": "https://github.com/JeanIsahakyan/aspectly#readme",
   "scripts": {
     "build": "pnpm -r build",
-    "build:core": "pnpm --filter @aspect/core build",
-    "build:web": "pnpm --filter @aspect/web build",
-    "build:react-native": "pnpm --filter @aspect/react-native build",
-    "build:react-native-web": "pnpm --filter @aspect/react-native-web build",
+    "build:core": "pnpm --filter @aspectly/core build",
+    "build:web": "pnpm --filter @aspectly/web build",
+    "build:react-native": "pnpm --filter @aspectly/react-native build",
+    "build:react-native-web": "pnpm --filter @aspectly/react-native-web build",
     "dev": "pnpm -r --parallel dev",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",

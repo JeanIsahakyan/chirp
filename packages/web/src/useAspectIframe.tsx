@@ -13,12 +13,12 @@ import {
   BridgeInternal,
   BridgeBase,
   BridgeOptions,
-} from '@aspect/core';
+} from '@aspectly/core';
 
 /**
- * Options for the useAspectIframe hook
+ * Options for the useAspectlyIframe hook
  */
-export interface UseAspectIframeOptions extends BridgeOptions {
+export interface UseAspectlyIframeOptions extends BridgeOptions {
   /** URL to load in the iframe */
   url: string;
 }
@@ -26,7 +26,7 @@ export interface UseAspectIframeOptions extends BridgeOptions {
 /**
  * Props for the iframe component
  */
-export interface AspectIframeProps
+export interface AspectlyIframeProps
   extends Omit<IframeHTMLAttributes<HTMLIFrameElement>, 'src' | 'onLoad'> {
   /** Optional error handler */
   onError?: (error: unknown) => void;
@@ -35,26 +35,26 @@ export interface AspectIframeProps
 }
 
 /**
- * Return type for useAspectIframe hook
+ * Return type for useAspectlyIframe hook
  */
-export type UseAspectIframeReturn = [
+export type UseAspectlyIframeReturn = [
   /** Bridge instance for communication */
   bridge: BridgeBase,
   /** Whether the iframe has loaded */
   loaded: boolean,
   /** React component to render the iframe */
-  IframeComponent: FunctionComponent<AspectIframeProps>
+  IframeComponent: FunctionComponent<AspectlyIframeProps>
 ];
 
 /**
- * React hook for embedding an iframe and communicating with it via Aspect bridge.
+ * React hook for embedding an iframe and communicating with it via Aspectly bridge.
  *
  * @example
  * ```tsx
- * import { useAspectIframe } from '@aspect/web';
+ * import { useAspectlyIframe } from '@aspectly/web';
  *
  * function App() {
- *   const [bridge, loaded, Iframe] = useAspectIframe({
+ *   const [bridge, loaded, Iframe] = useAspectlyIframe({
  *     url: 'https://example.com/widget'
  *   });
  *
@@ -80,10 +80,10 @@ export type UseAspectIframeReturn = [
  * }
  * ```
  */
-export const useAspectIframe = ({
+export const useAspectlyIframe = ({
   url,
   timeout,
-}: UseAspectIframeOptions): UseAspectIframeReturn => {
+}: UseAspectlyIframeOptions): UseAspectlyIframeReturn => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -105,8 +105,8 @@ export const useAspectIframe = ({
 
   const onLoad = useCallback(() => setLoaded(true), []);
 
-  const IframeComponent: FunctionComponent<AspectIframeProps> = useCallback(
-    ({ style, ...props }: AspectIframeProps) => {
+  const IframeComponent: FunctionComponent<AspectlyIframeProps> = useCallback(
+    ({ style, ...props }: AspectlyIframeProps) => {
       return (
         <iframe
           {...props}

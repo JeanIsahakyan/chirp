@@ -12,12 +12,12 @@ import {
   BridgeInternal,
   BridgeBase,
   BridgeOptions,
-} from '@aspect/core';
+} from '@aspectly/core';
 
 /**
- * Options for the useAspectWebView hook (web platform)
+ * Options for the useAspectlyWebView hook (web platform)
  */
-export interface UseAspectWebViewOptions extends BridgeOptions {
+export interface UseAspectlyWebViewOptions extends BridgeOptions {
   /** URL to load in the iframe/WebView */
   url: string;
 }
@@ -25,7 +25,7 @@ export interface UseAspectWebViewOptions extends BridgeOptions {
 /**
  * Props for the component (web platform uses iframe)
  */
-export interface AspectWebViewProps {
+export interface AspectlyWebViewProps {
   /** Optional error handler */
   onError?: (error: unknown) => void;
   /** Custom styles */
@@ -41,30 +41,30 @@ export interface AspectWebViewProps {
 }
 
 /**
- * Return type for useAspectWebView hook
+ * Return type for useAspectlyWebView hook
  */
-export type UseAspectWebViewReturn = [
+export type UseAspectlyWebViewReturn = [
   /** Bridge instance for communication */
   bridge: BridgeBase,
   /** Whether the content has loaded */
   loaded: boolean,
   /** React component to render the iframe */
-  WebViewComponent: FunctionComponent<AspectWebViewProps>
+  WebViewComponent: FunctionComponent<AspectlyWebViewProps>
 ];
 
 /**
  * React hook for React Native Web that provides cross-platform
  * WebView-like functionality using iframes.
  *
- * This hook provides the same API as @aspect/react-native's useAspectWebView
+ * This hook provides the same API as @aspectly/react-native's useAspectlyWebView
  * but uses iframes for the web platform.
  *
  * @example
  * ```tsx
- * import { useAspectWebView } from '@aspect/react-native-web';
+ * import { useAspectlyWebView } from '@aspectly/react-native-web';
  *
  * function App() {
- *   const [bridge, loaded, WebView] = useAspectWebView({
+ *   const [bridge, loaded, WebView] = useAspectlyWebView({
  *     url: 'https://example.com/widget'
  *   });
  *
@@ -84,10 +84,10 @@ export type UseAspectWebViewReturn = [
  * }
  * ```
  */
-export const useAspectWebView = ({
+export const useAspectlyWebView = ({
   url,
   timeout,
-}: UseAspectWebViewOptions): UseAspectWebViewReturn => {
+}: UseAspectlyWebViewOptions): UseAspectlyWebViewReturn => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -109,8 +109,8 @@ export const useAspectWebView = ({
 
   const onLoad = useCallback(() => setLoaded(true), []);
 
-  const WebViewComponent: FunctionComponent<AspectWebViewProps> = useCallback(
-    ({ style, className, title, sandbox, allow, ...props }: AspectWebViewProps) => {
+  const WebViewComponent: FunctionComponent<AspectlyWebViewProps> = useCallback(
+    ({ style, className, title, sandbox, allow, ...props }: AspectlyWebViewProps) => {
       return (
         <iframe
           {...props}

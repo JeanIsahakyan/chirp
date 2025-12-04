@@ -1,6 +1,6 @@
 # Architecture
 
-This document explains the internal architecture of the Aspect framework, including how components interact, message flow, and design decisions.
+This document explains the internal architecture of the Aspectly framework, including how components interact, message flow, and design decisions.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ This document explains the internal architecture of the Aspect framework, includ
 
 ## Overview
 
-Aspect uses a layered architecture that separates concerns and provides a clean abstraction for cross-platform communication. The framework is designed to be:
+Aspectly uses a layered architecture that separates concerns and provides a clean abstraction for cross-platform communication. The framework is designed to be:
 
 - **Modular**: Each component has a single responsibility
 - **Extensible**: Easy to add new communication methods
@@ -121,12 +121,12 @@ export class BridgeBase {
 - Interface consistency
 - Method delegation to internal implementation
 
-### Layer 4: AspectBridge
+### Layer 4: AspectlyBridge
 
 The main entry point that combines all components.
 
 ```tsx
-export class AspectBridge extends BridgeBase {
+export class AspectlyBridge extends BridgeBase {
   constructor() {
     const bridge = new BridgeInternal(BridgeCore.sendEvent);
     super(bridge);
@@ -147,12 +147,12 @@ export class AspectBridge extends BridgeBase {
 ```mermaid
 sequenceDiagram
     participant App as React Native App
-    participant Bridge as AspectBridge
+    participant Bridge as AspectlyBridge
     participant Internal as BridgeInternal
     participant Core as BridgeCore
     participant Web as WebView/Iframe
 
-    App->>Bridge: new AspectBridge()
+    App->>Bridge: new AspectlyBridge()
     Bridge->>Internal: new BridgeInternal()
     Bridge->>Core: BridgeCore.subscribe()
     
@@ -176,7 +176,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     participant App as React Native App
-    participant Bridge as AspectBridge
+    participant Bridge as AspectlyBridge
     participant Internal as BridgeInternal
     participant Core as BridgeCore
     participant Web as WebView/Iframe
@@ -203,7 +203,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     participant App as React Native App
-    participant Bridge as AspectBridge
+    participant Bridge as AspectlyBridge
     participant Internal as BridgeInternal
     participant Core as BridgeCore
     participant Web as WebView/Iframe

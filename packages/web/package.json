@@ -1,7 +1,7 @@
 {
-  "name": "@aspect/web",
+  "name": "@aspectly/web",
   "version": "0.1.0",
-  "description": "Web/iframe integration for Aspect bridge - React hooks for embedding and communicating with iframes",
+  "description": "Web/iframe integration for Scpe bridge - React hooks for embedding and communicating with iframes",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -43,13 +43,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JeanIsahakyan/chirp",
+    "url": "https://github.com/aspect-ly/aspectly",
     "directory": "packages/web"
   },
   "bugs": {
-    "url": "https://github.com/JeanIsahakyan/chirp/issues"
+    "url": "https://github.com/aspect-ly/aspectly/issues"
   },
-  "homepage": "https://github.com/JeanIsahakyan/chirp/tree/main/packages/web#readme",
+  "homepage": "https://github.com/aspect-ly/aspectly/tree/main/packages/web#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -57,7 +57,7 @@
     "react": ">=17.0.0"
   },
   "dependencies": {
-    "@aspect/core": "workspace:*"
+    "@aspectly/core": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",

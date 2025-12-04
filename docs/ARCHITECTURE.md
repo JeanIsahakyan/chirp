@@ -121,12 +121,12 @@ export class BridgeBase {
 - Interface consistency
 - Method delegation to internal implementation
 
-### Layer 4: AspectBridge
+### Layer 4: AspectlyBridge
 
 The main entry point that combines all components.
 
 ```tsx
-export class AspectBridge extends BridgeBase {
+export class AspectlyBridge extends BridgeBase {
   constructor() {
     const bridge = new BridgeInternal(BridgeCore.sendEvent);
     super(bridge);
@@ -147,12 +147,12 @@ export class AspectBridge extends BridgeBase {
 ```mermaid
 sequenceDiagram
     participant App as React Native App
-    participant Bridge as AspectBridge
+    participant Bridge as AspectlyBridge
     participant Internal as BridgeInternal
     participant Core as BridgeCore
     participant Web as WebView/Iframe
 
-    App->>Bridge: new AspectBridge()
+    App->>Bridge: new AspectlyBridge()
     Bridge->>Internal: new BridgeInternal()
     Bridge->>Core: BridgeCore.subscribe()
     
@@ -176,7 +176,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     participant App as React Native App
-    participant Bridge as AspectBridge
+    participant Bridge as AspectlyBridge
     participant Internal as BridgeInternal
     participant Core as BridgeCore
     participant Web as WebView/Iframe
@@ -203,7 +203,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     participant App as React Native App
-    participant Bridge as AspectBridge
+    participant Bridge as AspectlyBridge
     participant Internal as BridgeInternal
     participant Core as BridgeCore
     participant Web as WebView/Iframe

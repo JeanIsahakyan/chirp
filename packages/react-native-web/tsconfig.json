@@ -4,7 +4,7 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "@aspect/react-native-web": ["./src/index.ts"]
+      "@aspectly/react-native-web": ["./src/index.ts"]
     }
   },
   "include": ["src/**/*"],

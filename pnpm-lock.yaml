@@ -62,7 +62,7 @@ importers:
 
   examples/react-native:
     dependencies:
-      '@aspect/react-native-web':
+      '@aspectly/react-native-web':
         specifier: workspace:*
         version: link:../../packages/react-native-web
       expo:
@@ -99,7 +99,7 @@ importers:
 
   examples/web:
     dependencies:
-      '@aspect/web':
+      '@aspectly/web':
         specifier: workspace:*
         version: link:../../packages/web
       react:
@@ -139,7 +139,7 @@ importers:
 
   packages/react-native:
     dependencies:
-      '@aspect/core':
+      '@aspectly/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:
@@ -170,13 +170,13 @@ importers:
 
   packages/react-native-web:
     dependencies:
-      '@aspect/core':
+      '@aspectly/core':
         specifier: workspace:*
         version: link:../core
-      '@aspect/react-native':
+      '@aspectly/react-native':
         specifier: workspace:*
         version: link:../react-native
-      '@aspect/web':
+      '@aspectly/web':
         specifier: workspace:*
         version: link:../web
     devDependencies:
@@ -207,7 +207,7 @@ importers:
 
   packages/web:
     dependencies:
-      '@aspect/core':
+      '@aspectly/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:

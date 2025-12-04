@@ -1,4 +1,4 @@
-# @aspect/core
+# @aspectly/core
 
 The core bridge framework for cross-platform communication between WebViews, iframes, and web applications.
 
@@ -6,18 +6,18 @@ The core bridge framework for cross-platform communication between WebViews, ifr
 
 ```bash
 # npm
-npm install @aspect/core
+npm install @aspectly/core
 
 # pnpm
-pnpm add @aspect/core
+pnpm add @aspectly/core
 
 # yarn
-yarn add @aspect/core
+yarn add @aspectly/core
 ```
 
 ## Overview
 
-`@aspect/core` provides the foundational bridge communication layer that enables bidirectional message passing between different execution contexts:
+`@aspectly/core` provides the foundational bridge communication layer that enables bidirectional message passing between different execution contexts:
 
 - **WebView ↔ React Native**: Communication between web content and React Native apps
 - **iframe ↔ Parent Window**: Communication between iframes and their parent pages
@@ -28,10 +28,10 @@ yarn add @aspect/core
 ### Inside a WebView or iframe
 
 ```typescript
-import { AspectBridge } from '@aspect/core';
+import { AspectlyBridge } from '@aspectly/core';
 
 // Create a bridge instance
-const bridge = new AspectBridge();
+const bridge = new AspectlyBridge();
 
 // Initialize with handlers for incoming requests
 await bridge.init({
@@ -51,7 +51,7 @@ console.log(result);
 ### Browser Script Tag Usage
 
 ```html
-<script src="https://unpkg.com/@aspect/core/dist/browser.js"></script>
+<script src="https://unpkg.com/@aspectly/core/dist/browser.js"></script>
 <script>
   window.aspectBridge.init({
     greet: async (params) => ({ message: `Hello, ${params.name}!` })
@@ -63,14 +63,14 @@ console.log(result);
 
 ## API Reference
 
-### AspectBridge
+### AspectlyBridge
 
 The main class for bridge communication.
 
 #### Constructor
 
 ```typescript
-const bridge = new AspectBridge(options?: BridgeOptions);
+const bridge = new AspectlyBridge(options?: BridgeOptions);
 ```
 
 **Options:**
@@ -146,7 +146,7 @@ bridge.destroy();
 The bridge provides typed errors for different failure scenarios:
 
 ```typescript
-import { BridgeErrorType } from '@aspect/core';
+import { BridgeErrorType } from '@aspectly/core';
 
 try {
   await bridge.send('unknownMethod');
@@ -175,13 +175,13 @@ The package consists of four layers:
 1. **BridgeCore** - Low-level platform detection and message serialization
 2. **BridgeInternal** - Protocol management and request/response lifecycle
 3. **BridgeBase** - Clean public API interface
-4. **AspectBridge** - Main entry point composing all layers
+4. **AspectlyBridge** - Main entry point composing all layers
 
 ## Related Packages
 
-- [`@aspect/web`](../web) - Web/iframe integration with React hooks
-- [`@aspect/react-native`](../react-native) - React Native WebView integration
-- [`@aspect/react-native-web`](../react-native-web) - React Native Web + iframe support
+- [`@aspectly/web`](../web) - Web/iframe integration with React hooks
+- [`@aspectly/react-native`](../react-native) - React Native WebView integration
+- [`@aspectly/react-native-web`](../react-native-web) - React Native Web + iframe support
 
 ## License
 

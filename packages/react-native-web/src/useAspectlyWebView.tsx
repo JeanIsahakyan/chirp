@@ -6,55 +6,65 @@ import {
   useRef,
   useState,
   CSSProperties,
-  IframeHTMLAttributes,
 } from 'react';
 import {
   BridgeCore,
   BridgeInternal,
   BridgeBase,
   BridgeOptions,
-} from '@aspect/core';
+} from '@aspectly/core';
 
 /**
- * Options for the useAspectIframe hook
+ * Options for the useAspectlyWebView hook (web platform)
  */
-export interface UseAspectIframeOptions extends BridgeOptions {
-  /** URL to load in the iframe */
+export interface UseAspectlyWebViewOptions extends BridgeOptions {
+  /** URL to load in the iframe/WebView */
   url: string;
 }
 
 /**
- * Props for the iframe component
+ * Props for the component (web platform uses iframe)
  */
-export interface AspectIframeProps
-  extends Omit<IframeHTMLAttributes<HTMLIFrameElement>, 'src' | 'onLoad'> {
+export interface AspectlyWebViewProps {
   /** Optional error handler */
   onError?: (error: unknown) => void;
   /** Custom styles */
   style?: CSSProperties;
+  /** Class name */
+  className?: string;
+  /** Title for accessibility */
+  title?: string;
+  /** Sandbox attribute for iframe */
+  sandbox?: string;
+  /** Allow attribute for iframe */
+  allow?: string;
 }
 
 /**
- * Return type for useAspectIframe hook
+ * Return type for useAspectlyWebView hook
  */
-export type UseAspectIframeReturn = [
+export type UseAspectlyWebViewReturn = [
   /** Bridge instance for communication */
   bridge: BridgeBase,
-  /** Whether the iframe has loaded */
+  /** Whether the content has loaded */
   loaded: boolean,
   /** React component to render the iframe */
-  IframeComponent: FunctionComponent<AspectIframeProps>
+  WebViewComponent: FunctionComponent<AspectlyWebViewProps>
 ];
 
 /**
- * React hook for embedding an iframe and communicating with it via Aspect bridge.
+ * React hook for React Native Web that provides cross-platform
+ * WebView-like functionality using iframes.
+ *
+ * This hook provides the same API as @aspectly/react-native's useAspectlyWebView
+ * but uses iframes for the web platform.
  *
  * @example
  * ```tsx
- * import { useAspectIframe } from '@aspect/web';
+ * import { useAspectlyWebView } from '@aspectly/react-native-web';
  *
  * function App() {
- *   const [bridge, loaded, Iframe] = useAspectIframe({
+ *   const [bridge, loaded, WebView] = useAspectlyWebView({
  *     url: 'https://example.com/widget'
  *   });
  *
@@ -66,24 +76,18 @@ export type UseAspectIframeReturn = [
  *     }
  *   }, [loaded, bridge]);
  *
- *   const handleClick = async () => {
- *     const result = await bridge.send('greet', { name: 'World' });
- *     console.log(result);
- *   };
- *
  *   return (
- *     <div>
- *       <Iframe style={{ width: '100%', height: 400 }} />
- *       <button onClick={handleClick}>Send Message</button>
- *     </div>
+ *     <View style={{ flex: 1 }}>
+ *       <WebView style={{ flex: 1 }} />
+ *     </View>
  *   );
  * }
  * ```
  */
-export const useAspectIframe = ({
+export const useAspectlyWebView = ({
   url,
   timeout,
-}: UseAspectIframeOptions): UseAspectIframeReturn => {
+}: UseAspectlyWebViewOptions): UseAspectlyWebViewReturn => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -105,15 +109,21 @@ export const useAspectIframe = ({
 
   const onLoad = useCallback(() => setLoaded(true), []);
 
-  const IframeComponent: FunctionComponent<AspectIframeProps> = useCallback(
-    ({ style, ...props }: AspectIframeProps) => {
+  const WebViewComponent: FunctionComponent<AspectlyWebViewProps> = useCallback(
+    ({ style, className, title, sandbox, allow, ...props }: AspectlyWebViewProps) => {
       return (
         <iframe
           {...props}
           onLoad={onLoad}
           ref={iframeRef}
+          className={className}
+          title={title ?? 'Embedded content'}
+          sandbox={sandbox}
+          allow={allow}
           style={{
             border: 0,
+            width: '100%',
+            height: '100%',
             ...style,
           }}
           src={url}
@@ -123,5 +133,5 @@ export const useAspectIframe = ({
     [url, onLoad]
   );
 
-  return [publicBridge, loaded, IframeComponent];
+  return [publicBridge, loaded, WebViewComponent];
 };

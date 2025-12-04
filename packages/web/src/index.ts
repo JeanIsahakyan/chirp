@@ -1,21 +1,21 @@
 // Main exports
-export { useAspectIframe } from './useAspectIframe';
+export { useAspectlyIframe } from './useAspectlyIframe';
 
 // Type exports
 export type {
-  UseAspectIframeOptions,
-  UseAspectIframeReturn,
-  AspectIframeProps,
-} from './useAspectIframe';
+  UseAspectlyIframeOptions,
+  UseAspectlyIframeReturn,
+  AspectlyIframeProps,
+} from './useAspectlyIframe';
 
 // Re-export core types for convenience
 export {
-  AspectBridge,
+  AspectlyBridge,
   BridgeBase,
   BridgeErrorType,
   BridgeEventType,
   BridgeResultType,
-} from '@aspect/core';
+} from '@aspectly/core';
 
 export type {
   BridgeHandler,
@@ -24,4 +24,4 @@ export type {
   BridgeOptions,
   BridgeResultError,
   BridgeResultEvent,
-} from '@aspect/core';
+} from '@aspectly/core';

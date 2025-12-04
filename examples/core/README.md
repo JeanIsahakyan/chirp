@@ -1,6 +1,6 @@
-# @aspect/core Example
+# @aspectly/core Example
 
-This example demonstrates using `@aspect/core` via a browser script tag inside an iframe/WebView.
+This example demonstrates using `@aspectly/core` via a browser script tag inside an iframe/WebView.
 
 ## Files
 

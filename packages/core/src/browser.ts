@@ -4,7 +4,7 @@
  *
  * @example
  * ```html
- * <script src="https://unpkg.com/@aspect/core/dist/browser.js"></script>
+ * <script src="https://unpkg.com/@aspectly/core/dist/browser.js"></script>
  * <script>
  *   window.aspectBridge.init({
  *     greet: async (params) => ({ message: 'Hello!' })
@@ -12,16 +12,16 @@
  * </script>
  * ```
  */
-import { AspectBridge } from './AspectBridge';
+import { AspectlyBridge } from './AspectlyBridge';
 
 declare global {
   interface Window {
-    aspectBridge: AspectBridge;
+    aspectBridge: AspectlyBridge;
   }
 }
 
 if (typeof window !== 'undefined') {
-  window.aspectBridge = new AspectBridge();
+  window.aspectBridge = new AspectlyBridge();
 }
 
-export { AspectBridge };
+export { AspectlyBridge };

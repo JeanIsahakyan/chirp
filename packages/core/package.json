@@ -1,5 +1,5 @@
 {
-  "name": "@aspect/core",
+  "name": "@aspectly/core",
   "version": "0.1.0",
   "description": "Core bridge framework for cross-platform communication between WebViews, iframes, and web applications",
   "main": "./dist/index.js",
@@ -53,13 +53,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JeanIsahakyan/chirp",
+    "url": "https://github.com/aspect-ly/aspectly",
     "directory": "packages/core"
   },
   "bugs": {
-    "url": "https://github.com/JeanIsahakyan/chirp/issues"
+    "url": "https://github.com/aspect-ly/aspectly/issues"
   },
-  "homepage": "https://github.com/JeanIsahakyan/chirp/tree/main/packages/core#readme",
+  "homepage": "https://github.com/aspect-ly/aspectly/tree/main/packages/core#readme",
   "publishConfig": {
     "access": "public"
   },

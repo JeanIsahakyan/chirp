@@ -9,7 +9,7 @@ export default defineConfig({
   clean: true,
   treeshake: true,
   minify: false,
-  external: ['react', 'react-native', 'react-native-webview', '@aspect/core'],
+  external: ['react', 'react-native', 'react-native-webview', '@aspectly/core'],
   esbuildOptions(options) {
     options.jsx = 'automatic';
   },

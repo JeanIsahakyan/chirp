@@ -8,26 +8,26 @@ The Aspect library has been restructured into a monorepo with multiple focused p
 
 | Old | New | Use Case |
 |-----|-----|----------|
-| `@jeanisahakyan/chirp` | `@aspect/core` | Inside iframes/WebViews |
-| `@jeanisahakyan/chirp` | `@aspect/web` | Web apps embedding iframes |
-| `@jeanisahakyan/chirp` | `@aspect/react-native` | React Native apps |
-| `@jeanisahakyan/chirp` | `@aspect/react-native-web` | Universal Expo apps |
+| `@jeanisahakyan/chirp` | `@aspectly/core` | Inside iframes/WebViews |
+| `@jeanisahakyan/chirp` | `@aspectly/web` | Web apps embedding iframes |
+| `@jeanisahakyan/chirp` | `@aspectly/react-native` | React Native apps |
+| `@jeanisahakyan/chirp` | `@aspectly/react-native-web` | Universal Expo apps |
 
 ## Step-by-Step Migration
 
 ### Step 1: Identify Your Use Case
 
 **If you're building a widget/app that runs inside an iframe or WebView:**
-→ Use `@aspect/core`
+→ Use `@aspectly/core`
 
 **If you're building a web app that embeds iframes:**
-→ Use `@aspect/web`
+→ Use `@aspectly/web`
 
 **If you're building a React Native app that uses WebViews:**
-→ Use `@aspect/react-native`
+→ Use `@aspectly/react-native`
 
 **If you're building a universal app (Expo/React Native Web):**
-→ Use `@aspect/react-native-web`
+→ Use `@aspectly/react-native-web`
 
 ### Step 2: Update Dependencies
 
@@ -36,49 +36,49 @@ The Aspect library has been restructured into a monorepo with multiple focused p
 npm uninstall @jeanisahakyan/chirp
 
 # Install new package based on use case
-npm install @aspect/core          # For embedded content
-npm install @aspect/web           # For web iframe hosts
-npm install @aspect/react-native  # For React Native
+npm install @aspectly/core          # For embedded content
+npm install @aspectly/web           # For web iframe hosts
+npm install @aspectly/react-native  # For React Native
 ```
 
 ### Step 3: Update Imports
 
-#### For AspectBridge (Inside WebView/iframe)
+#### For AspectlyBridge (Inside WebView/iframe)
 
 ```diff
 - import { ChirpBridge } from '@jeanisahakyan/chirp';
-+ import { AspectBridge } from '@aspect/core';
++ import { AspectlyBridge } from '@aspectly/core';
 
-const bridge = new AspectBridge();
+const bridge = new AspectlyBridge();
 ```
 
-#### For useAspectWebView (React Native)
+#### For useAspectlyWebView (React Native)
 
 ```diff
 - import { useChirpWebView } from '@jeanisahakyan/chirp';
-+ import { useAspectWebView } from '@aspect/react-native';
++ import { useAspectlyWebView } from '@aspectly/react-native';
 
 function App() {
 -  const [bridge, loaded, WebView] = useChirpWebView({
 -    webview_url: 'https://example.com'
 -  });
-+  const [bridge, loaded, WebView] = useAspectWebView({
++  const [bridge, loaded, WebView] = useAspectlyWebView({
 +    url: 'https://example.com'  // Note: 'webview_url' → 'url'
 +  });
 }
 ```
 
-#### For useAspectIframe (Web)
+#### For useAspectlyIframe (Web)
 
 ```diff
 - import { useChirpBrowserIframe } from '@jeanisahakyan/chirp';
-+ import { useAspectIframe } from '@aspect/web';
++ import { useAspectlyIframe } from '@aspectly/web';
 
 function App() {
 -  const [bridge, loaded, Iframe] = useChirpBrowserIframe({
 -    webview_url: 'https://example.com'
 -  });
-+  const [bridge, loaded, Iframe] = useAspectIframe({
++  const [bridge, loaded, Iframe] = useAspectlyIframe({
 +    url: 'https://example.com'  // Note: 'webview_url' → 'url'
 +  });
 }
@@ -90,7 +90,7 @@ The options object has been simplified:
 
 ```diff
 // Old
-const [bridge, loaded, Component] = useAspectWebView({
+const [bridge, loaded, Component] = useAspectlyWebView({
 -  webview_url: 'https://example.com'
 +  url: 'https://example.com'
 });
@@ -102,9 +102,9 @@ Error types and other TypeScript types are now exported from each package:
 
 ```diff
 - import { BridgeErrorType } from '@jeanisahakyan/chirp';
-+ import { BridgeErrorType } from '@aspect/core';
++ import { BridgeErrorType } from '@aspectly/core';
 // or from any other package
-+ import { BridgeErrorType } from '@aspect/web';
++ import { BridgeErrorType } from '@aspectly/web';
 ```
 
 ## API Changes
@@ -138,20 +138,20 @@ The new packages are more modular, resulting in smaller bundle sizes when you on
 
 | Package | Approximate Size |
 |---------|------------------|
-| `@aspect/core` | ~4 KB |
-| `@aspect/web` | ~2 KB (+ core) |
-| `@aspect/react-native` | ~2 KB (+ core) |
+| `@aspectly/core` | ~4 KB |
+| `@aspectly/web` | ~2 KB (+ core) |
+| `@aspectly/react-native` | ~2 KB (+ core) |
 
 ### Dependencies
 
-- `@aspect/core` - No dependencies
-- `@aspect/web` - Depends on `@aspect/core`, peer dep on `react`
-- `@aspect/react-native` - Depends on `@aspect/core`, peer deps on `react`, `react-native`, `react-native-webview`
-- `@aspect/react-native-web` - Depends on all packages
+- `@aspectly/core` - No dependencies
+- `@aspectly/web` - Depends on `@aspectly/core`, peer dep on `react`
+- `@aspectly/react-native` - Depends on `@aspectly/core`, peer deps on `react`, `react-native`, `react-native-webview`
+- `@aspectly/react-native-web` - Depends on all packages
 
 ## Troubleshooting
 
-### "Cannot find module '@aspect/core'"
+### "Cannot find module '@aspectly/core'"
 
 Make sure you've installed the correct package for your use case.
 
@@ -160,7 +160,7 @@ Make sure you've installed the correct package for your use case.
 The option has been renamed to `url`. Update your code:
 
 ```typescript
-useAspectIframe({ url: 'https://...' })
+useAspectlyIframe({ url: 'https://...' })
 ```
 
 ### "Bridge methods not working"
@@ -173,4 +173,4 @@ If you encounter issues during migration:
 
 1. Check the [API documentation](./API.md)
 2. Review the [examples](./EXAMPLES.md)
-3. Open an issue on [GitHub](https://github.com/JeanIsahakyan/chirp/issues)
+3. Open an issue on [GitHub](https://github.com/aspect-ly/aspectly/issues)

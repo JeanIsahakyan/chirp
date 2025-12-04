@@ -9,7 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useAspectWebView, BridgeResultEvent } from '@aspect/react-native-web';
+import { useAspectlyWebView, BridgeResultEvent } from '@aspectly/react-native-web';
 
 interface LogEntry {
   time: string;
@@ -25,7 +25,7 @@ export default function App() {
     // For iOS simulator, use your machine's IP address
   });
 
-  const [bridge, loaded, WebView] = useAspectWebView({
+  const [bridge, loaded, WebView] = useAspectlyWebView({
     url: widgetUrl!,
   });
 

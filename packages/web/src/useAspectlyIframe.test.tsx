@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useAspectWebView } from './useAspectWebView';
+import { useAspectlyIframe } from './useAspectlyIframe';
 
-// Mock @aspect/core
-vi.mock('@aspect/core', () => ({
+// Mock @aspectly/core
+vi.mock('@aspectly/core', () => ({
   BridgeCore: {
     wrapBridgeEvent: vi.fn((event) => JSON.stringify({ type: 'BridgeEvent', event })),
     subscribe: vi.fn().mockReturnValue(vi.fn()),
@@ -27,7 +27,7 @@ vi.mock('@aspect/core', () => ({
   })),
 }));
 
-describe('useAspectWebView (web platform)', () => {
+describe('useAspectlyIframe', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -35,19 +35,19 @@ describe('useAspectWebView (web platform)', () => {
   describe('hook return values', () => {
     it('should return bridge, loaded state, and component', () => {
       const { result } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com' })
+        useAspectlyIframe({ url: 'https://example.com' })
       );
 
-      const [bridge, loaded, WebViewComponent] = result.current;
+      const [bridge, loaded, IframeComponent] = result.current;
 
       expect(bridge).toBeDefined();
       expect(typeof loaded).toBe('boolean');
-      expect(typeof WebViewComponent).toBe('function');
+      expect(typeof IframeComponent).toBe('function');
     });
 
     it('should initially have loaded as false', () => {
       const { result } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com' })
+        useAspectlyIframe({ url: 'https://example.com' })
       );
 
       const [, loaded] = result.current;
@@ -58,7 +58,7 @@ describe('useAspectWebView (web platform)', () => {
   describe('bridge instance', () => {
     it('should have init method', () => {
       const { result } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com' })
+        useAspectlyIframe({ url: 'https://example.com' })
       );
 
       const [bridge] = result.current;
@@ -67,7 +67,7 @@ describe('useAspectWebView (web platform)', () => {
 
     it('should have send method', () => {
       const { result } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com' })
+        useAspectlyIframe({ url: 'https://example.com' })
       );
 
       const [bridge] = result.current;
@@ -76,7 +76,7 @@ describe('useAspectWebView (web platform)', () => {
 
     it('should have subscribe method', () => {
       const { result } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com' })
+        useAspectlyIframe({ url: 'https://example.com' })
       );
 
       const [bridge] = result.current;
@@ -85,7 +85,7 @@ describe('useAspectWebView (web platform)', () => {
 
     it('should have unsubscribe method', () => {
       const { result } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com' })
+        useAspectlyIframe({ url: 'https://example.com' })
       );
 
       const [bridge] = result.current;
@@ -93,21 +93,22 @@ describe('useAspectWebView (web platform)', () => {
     });
   });
 
-  describe('WebViewComponent', () => {
+  describe('IframeComponent', () => {
     it('should be a valid React component', () => {
       const { result } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com' })
+        useAspectlyIframe({ url: 'https://example.com' })
       );
 
-      const [, , WebViewComponent] = result.current;
-      expect(WebViewComponent).toBeDefined();
+      const [, , IframeComponent] = result.current;
+      expect(IframeComponent).toBeDefined();
+      expect(IframeComponent.name).toBeDefined();
     });
   });
 
   describe('memoization', () => {
     it('should return same bridge instance across re-renders', () => {
       const { result, rerender } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com' })
+        useAspectlyIframe({ url: 'https://example.com' })
       );
 
       const firstBridge = result.current[0];
@@ -119,7 +120,7 @@ describe('useAspectWebView (web platform)', () => {
 
     it('should return same component across re-renders with same url', () => {
       const { result, rerender } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com' })
+        useAspectlyIframe({ url: 'https://example.com' })
       );
 
       const firstComponent = result.current[2];
@@ -133,7 +134,7 @@ describe('useAspectWebView (web platform)', () => {
   describe('options', () => {
     it('should accept timeout option', () => {
       const { result } = renderHook(() =>
-        useAspectWebView({ url: 'https://example.com', timeout: 5000 })
+        useAspectlyIframe({ url: 'https://example.com', timeout: 5000 })
       );
 
       expect(result.current).toBeDefined();

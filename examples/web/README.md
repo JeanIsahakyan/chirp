@@ -1,6 +1,6 @@
-# @aspect/web Example
+# @aspectly/web Example
 
-This example demonstrates using `@aspect/web` to embed an iframe and communicate with it.
+This example demonstrates using `@aspectly/web` to embed an iframe and communicate with it.
 
 ## Setup
 
@@ -28,7 +28,7 @@ pnpm dev
 
 ## What This Demonstrates
 
-- Using `useAspectIframe` hook to embed an iframe
+- Using `useAspectlyIframe` hook to embed an iframe
 - Initializing handlers for messages from the iframe
 - Sending messages to the iframe
 - Subscribing to bridge events

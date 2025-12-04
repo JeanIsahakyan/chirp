@@ -13,9 +13,9 @@ export default defineConfig({
     'react',
     'react-native',
     'react-native-webview',
-    '@aspect/core',
-    '@aspect/web',
-    '@aspect/react-native',
+    '@aspectly/core',
+    '@aspectly/web',
+    '@aspectly/react-native',
   ],
   esbuildOptions(options) {
     options.jsx = 'automatic';

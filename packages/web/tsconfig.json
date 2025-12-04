@@ -4,7 +4,7 @@
     "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
-      "@aspect/web": ["./src/index.ts"]
+      "@aspectly/web": ["./src/index.ts"]
     }
   },
   "include": ["src/**/*"],

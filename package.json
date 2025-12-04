@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "description": "Aspect - A powerful communication bridge framework for React Native, Web, and iframes",
-  "repository": "https://github.com/JeanIsahakyan/chirp",
+  "repository": "https://github.com/JeanIsahakyan/aspect",
   "author": "Jean Isahakyan <jeanisahkyan@gmail.com> (https://github.com/JeanIsahakyan)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JeanIsahakyan/chirp/issues"
+    "url": "https://github.com/JeanIsahakyan/aspect/issues"
   },
-  "homepage": "https://github.com/JeanIsahakyan/chirp#readme",
+  "homepage": "https://github.com/JeanIsahakyan/aspect#readme",
   "scripts": {
     "build": "pnpm -r build",
     "build:core": "pnpm --filter @aspect/core build",

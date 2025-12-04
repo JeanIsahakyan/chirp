@@ -1,6 +1,6 @@
-# @aspect/core Example
+# @aspectly/core Example
 
-This example demonstrates using `@aspect/core` via a browser script tag inside an iframe/WebView.
+This example demonstrates using `@aspectly/core` via a browser script tag inside an iframe/WebView.
 
 ## Files
 
@@ -25,7 +25,7 @@ php -S localhost:3001
 
 ## What This Demonstrates
 
-- Using the global `window.aspectBridge` instance
+- Using the global `window.aspectlyBridge` instance
 - Initializing the bridge with handlers
 - Sending messages to the parent container
 - Receiving messages from the parent

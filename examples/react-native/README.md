@@ -1,6 +1,6 @@
 # React Native / React Native Web Example
 
-This example demonstrates using `@aspect/react-native-web` for universal app development that works on iOS, Android, and Web.
+This example demonstrates using `@aspectly/react-native-web` for universal app development that works on iOS, Android, and Web.
 
 ## Setup
 

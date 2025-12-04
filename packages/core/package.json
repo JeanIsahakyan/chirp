@@ -53,13 +53,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JeanIsahakyan/chirp",
+    "url": "https://github.com/JeanIsahakyan/aspect",
     "directory": "packages/core"
   },
   "bugs": {
-    "url": "https://github.com/JeanIsahakyan/chirp/issues"
+    "url": "https://github.com/JeanIsahakyan/aspect/issues"
   },
-  "homepage": "https://github.com/JeanIsahakyan/chirp/tree/main/packages/core#readme",
+  "homepage": "https://github.com/JeanIsahakyan/aspect/tree/main/packages/core#readme",
   "publishConfig": {
     "access": "public"
   },

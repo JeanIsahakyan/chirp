@@ -1,5 +1,5 @@
 // Main exports
-export { AspectBridge } from './AspectBridge';
+export { AspectlyBridge } from './AspectBridge';
 export { BridgeBase } from './BridgeBase';
 export { BridgeInternal } from './BridgeInternal';
 export { BridgeCore } from './BridgeCore';

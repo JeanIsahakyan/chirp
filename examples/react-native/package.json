@@ -10,7 +10,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@aspect/react-native-web": "workspace:*",
+    "@aspectly/react-native-web": "workspace:*",
     "expo": "~49.0.0",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",

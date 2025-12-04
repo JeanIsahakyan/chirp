@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { AspectBridge } from './AspectBridge';
+import { AspectlyBridge } from './AspectBridge';
 import { BridgeCore } from './BridgeCore';
 
 // Mock BridgeCore
@@ -10,23 +10,23 @@ vi.mock('./BridgeCore', () => ({
   },
 }));
 
-describe('AspectBridge', () => {
+describe('AspectlyBridge', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   describe('constructor', () => {
     it('should create a bridge and subscribe to events', () => {
-      const bridge = new AspectBridge();
+      const bridge = new AspectlyBridge();
 
       expect(BridgeCore.subscribe).toHaveBeenCalledWith(expect.any(Function));
-      expect(bridge).toBeInstanceOf(AspectBridge);
+      expect(bridge).toBeInstanceOf(AspectlyBridge);
     });
 
     it('should pass options to internal bridge', () => {
-      const bridge = new AspectBridge({ timeout: 5000 });
+      const bridge = new AspectlyBridge({ timeout: 5000 });
 
-      expect(bridge).toBeInstanceOf(AspectBridge);
+      expect(bridge).toBeInstanceOf(AspectlyBridge);
     });
   });
 
@@ -37,7 +37,7 @@ describe('AspectBridge', () => {
         unsubscribeMock
       );
 
-      const bridge = new AspectBridge();
+      const bridge = new AspectlyBridge();
       bridge.destroy();
 
       expect(unsubscribeMock).toHaveBeenCalled();
@@ -46,32 +46,32 @@ describe('AspectBridge', () => {
 
   describe('inherited methods', () => {
     it('should have init method', () => {
-      const bridge = new AspectBridge();
+      const bridge = new AspectlyBridge();
       expect(typeof bridge.init).toBe('function');
     });
 
     it('should have send method', () => {
-      const bridge = new AspectBridge();
+      const bridge = new AspectlyBridge();
       expect(typeof bridge.send).toBe('function');
     });
 
     it('should have subscribe method', () => {
-      const bridge = new AspectBridge();
+      const bridge = new AspectlyBridge();
       expect(typeof bridge.subscribe).toBe('function');
     });
 
     it('should have unsubscribe method', () => {
-      const bridge = new AspectBridge();
+      const bridge = new AspectlyBridge();
       expect(typeof bridge.unsubscribe).toBe('function');
     });
 
     it('should have supports method', () => {
-      const bridge = new AspectBridge();
+      const bridge = new AspectlyBridge();
       expect(typeof bridge.supports).toBe('function');
     });
 
     it('should have isAvailable method', () => {
-      const bridge = new AspectBridge();
+      const bridge = new AspectlyBridge();
       expect(typeof bridge.isAvailable).toBe('function');
     });
   });

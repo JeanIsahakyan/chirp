@@ -1,33 +1,33 @@
-# @aspect/web
+# @aspectly/web
 
-React hooks for embedding iframes and communicating with them using the Aspect bridge protocol.
+React hooks for embedding iframes and communicating with them using the Aspectly bridge protocol.
 
 ## Installation
 
 ```bash
 # npm
-npm install @aspect/web
+npm install @aspectly/web
 
 # pnpm
-pnpm add @aspect/web
+pnpm add @aspectly/web
 
 # yarn
-yarn add @aspect/web
+yarn add @aspectly/web
 ```
 
 ## Overview
 
-`@aspect/web` provides React hooks for the parent page to embed iframes and establish bidirectional communication with them. The iframe content should use `@aspect/core` to communicate back.
+`@aspectly/web` provides React hooks for the parent page to embed iframes and establish bidirectional communication with them. The iframe content should use `@aspectly/core` to communicate back.
 
 ## Quick Start
 
 ### Parent Page (Host)
 
 ```tsx
-import { useAspectIframe } from '@aspect/web';
+import { useAspectlyIframe } from '@aspectly/web';
 
 function App() {
-  const [bridge, loaded, Iframe] = useAspectIframe({
+  const [bridge, loaded, Iframe] = useAspectlyIframe({
     url: 'https://example.com/widget'
   });
 
@@ -67,13 +67,13 @@ function App() {
 
 ### iframe Content (Widget)
 
-The iframe should use `@aspect/core`:
+The iframe should use `@aspectly/core`:
 
 ```typescript
 // Inside the iframe
-import { AspectBridge } from '@aspect/core';
+import { AspectlyBridge } from '@aspectly/core';
 
-const bridge = new AspectBridge();
+const bridge = new AspectlyBridge();
 
 // Initialize with handlers
 await bridge.init({
@@ -89,10 +89,10 @@ console.log('User:', user);
 
 ## API Reference
 
-### useAspectIframe
+### useAspectlyIframe
 
 ```typescript
-const [bridge, loaded, IframeComponent] = useAspectIframe(options);
+const [bridge, loaded, IframeComponent] = useAspectlyIframe(options);
 ```
 
 #### Options
@@ -151,7 +151,7 @@ useEffect(() => {
 ### Error Handling
 
 ```tsx
-import { BridgeErrorType } from '@aspect/web';
+import { BridgeErrorType } from '@aspectly/web';
 
 const handleSend = async () => {
   try {
@@ -175,9 +175,9 @@ const handleSend = async () => {
 
 ## Related Packages
 
-- [`@aspect/core`](../core) - Core bridge framework (used inside iframes)
-- [`@aspect/react-native`](../react-native) - React Native WebView integration
-- [`@aspect/react-native-web`](../react-native-web) - React Native Web + iframe support
+- [`@aspectly/core`](../core) - Core bridge framework (used inside iframes)
+- [`@aspectly/react-native`](../react-native) - React Native WebView integration
+- [`@aspectly/react-native-web`](../react-native-web) - React Native Web + iframe support
 
 ## License
 

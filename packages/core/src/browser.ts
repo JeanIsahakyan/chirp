@@ -1,27 +1,27 @@
 /**
  * Browser entry point for direct script inclusion.
- * Creates a global `aspectBridge` instance on the window object.
+ * Creates a global `aspectlyBridge` instance on the window object.
  *
  * @example
  * ```html
- * <script src="https://unpkg.com/@aspect/core/dist/browser.js"></script>
+ * <script src="https://unpkg.com/@aspectly/core/dist/browser.js"></script>
  * <script>
- *   window.aspectBridge.init({
+ *   window.aspectlyBridge.init({
  *     greet: async (params) => ({ message: 'Hello!' })
  *   });
  * </script>
  * ```
  */
-import { AspectBridge } from './AspectBridge';
+import { AspectlyBridge } from './AspectBridge';
 
 declare global {
   interface Window {
-    aspectBridge: AspectBridge;
+    aspectlyBridge: AspectlyBridge;
   }
 }
 
 if (typeof window !== 'undefined') {
-  window.aspectBridge = new AspectBridge();
+  window.aspectlyBridge = new AspectlyBridge();
 }
 
-export { AspectBridge };
+export { AspectlyBridge };

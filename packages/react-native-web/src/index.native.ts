@@ -1,23 +1,23 @@
 /**
- * Native platform exports - re-exports from @aspect/react-native
+ * Native platform exports - re-exports from @aspectly/react-native
  *
  * This file is used by Metro bundler for iOS/Android builds.
  */
 export {
-  useAspectWebView,
-  type UseAspectWebViewOptions,
-  type UseAspectWebViewReturn,
-  type AspectWebViewProps,
-} from '@aspect/react-native';
+  useAspectlyWebView,
+  type UseAspectlyWebViewOptions,
+  type UseAspectlyWebViewReturn,
+  type AspectlyWebViewProps,
+} from '@aspectly/react-native';
 
 // Re-export core types for convenience
 export {
-  AspectBridge,
+  AspectlyBridge,
   BridgeBase,
   BridgeErrorType,
   BridgeEventType,
   BridgeResultType,
-} from '@aspect/core';
+} from '@aspectly/core';
 
 export type {
   BridgeHandler,
@@ -26,4 +26,4 @@ export type {
   BridgeOptions,
   BridgeResultError,
   BridgeResultEvent,
-} from '@aspect/core';
+} from '@aspectly/core';

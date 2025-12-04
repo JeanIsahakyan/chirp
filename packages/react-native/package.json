@@ -1,7 +1,7 @@
 {
-  "name": "@aspect/react-native",
+  "name": "@aspectly/react-native",
   "version": "0.1.0",
-  "description": "React Native WebView integration for Aspect bridge - communicate with web content in your React Native app",
+  "description": "React Native WebView integration for Aspectly bridge - communicate with web content in your React Native app",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -41,17 +41,17 @@
     "android",
     "mobile"
   ],
-  "author": "Jean Isahakyan <jeanisahkyan@gmail.com>",
+  "author": "Zhan Isaakian <jeanisahkyan@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JeanIsahakyan/aspect",
+    "url": "https://github.com/JeanIsahakyan/aspectly",
     "directory": "packages/react-native"
   },
   "bugs": {
-    "url": "https://github.com/JeanIsahakyan/aspect/issues"
+    "url": "https://github.com/JeanIsahakyan/aspectly/issues"
   },
-  "homepage": "https://github.com/JeanIsahakyan/aspect/tree/main/packages/react-native#readme",
+  "homepage": "https://github.com/JeanIsahakyan/aspectly/tree/main/packages/react-native#readme",
   "publishConfig": {
     "access": "public"
   },
@@ -61,7 +61,7 @@
     "react-native-webview": ">=11.0.0"
   },
   "dependencies": {
-    "@aspect/core": "workspace:*"
+    "@aspectly/core": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",

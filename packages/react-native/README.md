@@ -1,18 +1,18 @@
-# @aspect/react-native
+# @aspectly/react-native
 
-React Native WebView integration for the Aspect bridge - communicate with web content in your React Native app.
+React Native WebView integration for the Aspectly bridge - communicate with web content in your React Native app.
 
 ## Installation
 
 ```bash
 # npm
-npm install @aspect/react-native react-native-webview
+npm install @aspectly/react-native react-native-webview
 
 # pnpm
-pnpm add @aspect/react-native react-native-webview
+pnpm add @aspectly/react-native react-native-webview
 
 # yarn
-yarn add @aspect/react-native react-native-webview
+yarn add @aspectly/react-native react-native-webview
 ```
 
 ### iOS Additional Setup
@@ -23,7 +23,7 @@ cd ios && pod install
 
 ## Overview
 
-`@aspect/react-native` provides React hooks for React Native apps to embed WebViews and establish bidirectional communication with web content. The web content should use `@aspect/core` to communicate back.
+`@aspectly/react-native` provides React hooks for React Native apps to embed WebViews and establish bidirectional communication with web content. The web content should use `@aspectly/core` to communicate back.
 
 ## Quick Start
 
@@ -32,10 +32,10 @@ cd ios && pod install
 ```tsx
 import React, { useEffect } from 'react';
 import { View, Button, Platform } from 'react-native';
-import { useAspectWebView } from '@aspect/react-native';
+import { useAspectlyWebView } from '@aspectly/react-native';
 
 function App() {
-  const [bridge, loaded, WebView] = useAspectWebView({
+  const [bridge, loaded, WebView] = useAspectlyWebView({
     url: 'https://example.com/app'
   });
 
@@ -79,13 +79,13 @@ function App() {
 
 ### Web Content (Inside WebView)
 
-The web content should use `@aspect/core`:
+The web content should use `@aspectly/core`:
 
 ```typescript
 // In your web app loaded in the WebView
-import { AspectBridge } from '@aspect/core';
+import { AspectlyBridge } from '@aspectly/core';
 
-const bridge = new AspectBridge();
+const bridge = new AspectlyBridge();
 
 // Initialize with handlers
 await bridge.init({
@@ -104,10 +104,10 @@ await bridge.send('showAlert', { message: 'Hello from web!' });
 
 ## API Reference
 
-### useAspectWebView
+### useAspectlyWebView
 
 ```typescript
-const [bridge, loaded, WebViewComponent] = useAspectWebView(options);
+const [bridge, loaded, WebViewComponent] = useAspectlyWebView(options);
 ```
 
 #### Options
@@ -198,7 +198,7 @@ bridge.init({
 ## Error Handling
 
 ```tsx
-import { BridgeErrorType } from '@aspect/react-native';
+import { BridgeErrorType } from '@aspectly/react-native';
 
 const handleSend = async () => {
   try {
@@ -235,9 +235,9 @@ const handleSend = async () => {
 
 ## Related Packages
 
-- [`@aspect/core`](../core) - Core bridge framework (used in web content)
-- [`@aspect/web`](../web) - Web/iframe integration
-- [`@aspect/react-native-web`](../react-native-web) - React Native Web + iframe support
+- [`@aspectly/core`](../core) - Core bridge framework (used in web content)
+- [`@aspectly/web`](../web) - Web/iframe integration
+- [`@aspectly/react-native-web`](../react-native-web) - React Native Web + iframe support
 
 ## License
 

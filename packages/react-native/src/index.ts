@@ -1,21 +1,21 @@
 // Main exports
-export { useAspectWebView } from './useAspectWebView';
+export { useAspectlyWebView } from './useAspectWebView';
 
 // Type exports
 export type {
-  UseAspectWebViewOptions,
-  UseAspectWebViewReturn,
-  AspectWebViewProps,
+  UseAspectlyWebViewOptions,
+  UseAspectlyWebViewReturn,
+  AspectlyWebViewProps,
 } from './useAspectWebView';
 
 // Re-export core types for convenience
 export {
-  AspectBridge,
+  AspectlyBridge,
   BridgeBase,
   BridgeErrorType,
   BridgeEventType,
   BridgeResultType,
-} from '@aspect/core';
+} from '@aspectly/core';
 
 export type {
   BridgeHandler,
@@ -24,4 +24,4 @@ export type {
   BridgeOptions,
   BridgeResultError,
   BridgeResultEvent,
-} from '@aspect/core';
+} from '@aspectly/core';

@@ -12,12 +12,12 @@ import {
   BridgeInternal,
   BridgeBase,
   BridgeOptions,
-} from '@aspect/core';
+} from '@aspectly/core';
 
 /**
- * Options for the useAspectWebView hook
+ * Options for the useAspectlyWebView hook
  */
-export interface UseAspectWebViewOptions extends BridgeOptions {
+export interface UseAspectlyWebViewOptions extends BridgeOptions {
   /** URL to load in the WebView */
   url: string;
 }
@@ -25,32 +25,32 @@ export interface UseAspectWebViewOptions extends BridgeOptions {
 /**
  * Props for the WebView component
  */
-export interface AspectWebViewProps extends Omit<WebViewProps, 'source' | 'onMessage' | 'onLoad' | 'ref'> {
+export interface AspectlyWebViewProps extends Omit<WebViewProps, 'source' | 'onMessage' | 'onLoad' | 'ref'> {
   /** Optional error handler */
   onError?: (error: unknown) => void;
 }
 
 /**
- * Return type for useAspectWebView hook
+ * Return type for useAspectlyWebView hook
  */
-export type UseAspectWebViewReturn = [
+export type UseAspectlyWebViewReturn = [
   /** Bridge instance for communication */
   bridge: BridgeBase,
   /** Whether the WebView has loaded */
   loaded: boolean,
   /** React component to render the WebView */
-  WebViewComponent: FunctionComponent<AspectWebViewProps>
+  WebViewComponent: FunctionComponent<AspectlyWebViewProps>
 ];
 
 /**
- * React hook for embedding a WebView and communicating with it via Aspect bridge.
+ * React hook for embedding a WebView and communicating with it via Aspectly bridge.
  *
  * @example
  * ```tsx
- * import { useAspectWebView } from '@aspect/react-native';
+ * import { useAspectlyWebView } from '@aspectly/react-native';
  *
  * function App() {
- *   const [bridge, loaded, WebView] = useAspectWebView({
+ *   const [bridge, loaded, WebView] = useAspectlyWebView({
  *     url: 'https://example.com/app'
  *   });
  *
@@ -79,10 +79,10 @@ export type UseAspectWebViewReturn = [
  * }
  * ```
  */
-export const useAspectWebView = ({
+export const useAspectlyWebView = ({
   url,
   timeout,
-}: UseAspectWebViewOptions): UseAspectWebViewReturn => {
+}: UseAspectlyWebViewOptions): UseAspectlyWebViewReturn => {
   const webViewRef = useRef<WebView>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -117,8 +117,8 @@ export const useAspectWebView = ({
     [bridge]
   );
 
-  const WebViewComponent: FunctionComponent<AspectWebViewProps> = useCallback(
-    ({ style, onError, ...props }: AspectWebViewProps) => {
+  const WebViewComponent: FunctionComponent<AspectlyWebViewProps> = useCallback(
+    ({ style, onError, ...props }: AspectlyWebViewProps) => {
       return (
         <WebView
           {...props}

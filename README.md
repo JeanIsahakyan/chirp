@@ -1,4 +1,4 @@
-# Aspect
+# Aspectly
 
 A powerful, type-safe communication bridge framework for React Native, Web, and iframes.
 
@@ -6,7 +6,7 @@ A powerful, type-safe communication bridge framework for React Native, Web, and 
 
 ## Overview
 
-Aspect enables seamless bidirectional communication between:
+Aspectly enables seamless bidirectional communication between:
 - **React Native apps** and **WebViews**
 - **Web pages** and **iframes**
 - **Universal apps** (React Native Web / Expo) and embedded content
@@ -15,10 +15,10 @@ Aspect enables seamless bidirectional communication between:
 
 | Package | Description |
 |---------|-------------|
-| [`@aspect/core`](./packages/core) | Core bridge framework - use inside iframes/WebViews |
-| [`@aspect/web`](./packages/web) | Web/iframe integration with React hooks |
-| [`@aspect/react-native`](./packages/react-native) | React Native WebView integration |
-| [`@aspect/react-native-web`](./packages/react-native-web) | Universal React Native Web support |
+| [`@aspectly/core`](./packages/core) | Core bridge framework - use inside iframes/WebViews |
+| [`@aspectly/web`](./packages/web) | Web/iframe integration with React hooks |
+| [`@aspectly/react-native`](./packages/react-native) | React Native WebView integration |
+| [`@aspectly/react-native-web`](./packages/react-native-web) | Universal React Native Web support |
 
 ## Quick Start
 
@@ -27,10 +27,10 @@ Aspect enables seamless bidirectional communication between:
 **Parent page (host):**
 
 ```tsx
-import { useAspectIframe } from '@aspect/web';
+import { useAspectlyIframe } from '@aspectly/web';
 
 function App() {
-  const [bridge, loaded, Iframe] = useAspectIframe({
+  const [bridge, loaded, Iframe] = useAspectlyIframe({
     url: 'https://widget.example.com'
   });
 
@@ -49,9 +49,9 @@ function App() {
 **iframe content (widget):**
 
 ```typescript
-import { AspectBridge } from '@aspect/core';
+import { AspectlyBridge } from '@aspectly/core';
 
-const bridge = new AspectBridge();
+const bridge = new AspectlyBridge();
 await bridge.init({
   greet: async (params) => ({ message: `Hello, ${params.name}!` })
 });
@@ -64,10 +64,10 @@ const user = await bridge.send('getUserData');
 **React Native app:**
 
 ```tsx
-import { useAspectWebView } from '@aspect/react-native';
+import { useAspectlyWebView } from '@aspectly/react-native';
 
 function App() {
-  const [bridge, loaded, WebView] = useAspectWebView({
+  const [bridge, loaded, WebView] = useAspectlyWebView({
     url: 'https://webapp.example.com'
   });
 
@@ -89,9 +89,9 @@ function App() {
 **Web content (inside WebView):**
 
 ```typescript
-import { AspectBridge } from '@aspect/core';
+import { AspectlyBridge } from '@aspectly/core';
 
-const bridge = new AspectBridge();
+const bridge = new AspectlyBridge();
 await bridge.init();
 
 const device = await bridge.send('getDeviceInfo');
@@ -101,11 +101,11 @@ console.log(`Running on ${device.platform}`);
 ### Scenario 3: Universal app (Expo / React Native Web)
 
 ```tsx
-import { useAspectWebView } from '@aspect/react-native-web';
+import { useAspectlyWebView } from '@aspectly/react-native-web';
 
 // Same API works on iOS, Android, and Web!
 function App() {
-  const [bridge, loaded, WebView] = useAspectWebView({
+  const [bridge, loaded, WebView] = useAspectlyWebView({
     url: 'https://widget.example.com'
   });
 
@@ -129,9 +129,9 @@ function App() {
 ┌─────────────────────────────────────────────────────────────────┐
 │                         Host Context                             │
 │  ┌─────────────────────────────────────────────────────────────┐ │
-│  │ @aspect/web | @aspect/react-native | @aspect/react-native-web│ │
+│  │ @aspectly/web | @aspectly/react-native | @aspectly/react-native-web│ │
 │  │                                                              │ │
-│  │  • useAspectIframe() / useAspectWebView()                   │ │
+│  │  • useAspectlyIframe() / useAspectlyWebView()               │ │
 │  │  • Register handlers                                         │ │
 │  │  • Send requests                                             │ │
 │  └──────────────────────────┬──────────────────────────────────┘ │
@@ -141,9 +141,9 @@ function App() {
 │  │                   Embedded Context                           │ │
 │  │                     (iframe/WebView)                         │ │
 │  │  ┌───────────────────────────────────────────────────────┐  │ │
-│  │  │  @aspect/core                                          │  │ │
+│  │  │  @aspectly/core                                        │  │ │
 │  │  │                                                        │  │ │
-│  │  │  • AspectBridge                                       │  │ │
+│  │  │  • AspectlyBridge                                     │  │ │
 │  │  │  • Register handlers                                   │  │ │
 │  │  │  • Send requests                                       │  │ │
 │  │  └───────────────────────────────────────────────────────┘  │ │
@@ -157,22 +157,22 @@ Choose the package based on your use case:
 
 ```bash
 # Inside an iframe or WebView (embedded content)
-npm install @aspect/core
+npm install @aspectly/core
 
 # Web app embedding an iframe
-npm install @aspect/web
+npm install @aspectly/web
 
 # React Native app with WebView
-npm install @aspect/react-native react-native-webview
+npm install @aspectly/react-native react-native-webview
 
 # Universal app (Expo / React Native Web)
-npm install @aspect/react-native-web react-native-webview
+npm install @aspectly/react-native-web react-native-webview
 ```
 
 ## Error Handling
 
 ```typescript
-import { BridgeErrorType } from '@aspect/core';
+import { BridgeErrorType } from '@aspectly/core';
 
 try {
   const result = await bridge.send('someMethod', params);
@@ -231,4 +231,4 @@ Contributions are welcome! Please read our [Contributing Guide](./CONTRIBUTING.m
 
 ## License
 
-MIT © [Jean Isahakyan](https://github.com/JeanIsahakyan)
+MIT © [Zhan Isaakian](https://github.com/JeanIsahakyan)

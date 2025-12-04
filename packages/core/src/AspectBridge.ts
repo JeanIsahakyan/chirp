@@ -4,14 +4,14 @@ import { BridgeBase } from './BridgeBase';
 import type { BridgeOptions } from './types';
 
 /**
- * AspectBridge is the main entry point for bridge communication.
+ * AspectlyBridge is the main entry point for bridge communication.
  * Use this class when running inside a WebView or iframe that needs
  * to communicate with its parent container.
  *
  * @example
  * ```typescript
  * // Inside a WebView or iframe
- * const bridge = new AspectBridge();
+ * const bridge = new AspectlyBridge();
  *
  * // Initialize with handlers
  * await bridge.init({
@@ -24,7 +24,7 @@ import type { BridgeOptions } from './types';
  * const result = await bridge.send('someMethod', { data: 'value' });
  * ```
  */
-export class AspectBridge extends BridgeBase {
+export class AspectlyBridge extends BridgeBase {
   private cleanupSubscription: VoidFunction;
 
   constructor(options?: BridgeOptions) {

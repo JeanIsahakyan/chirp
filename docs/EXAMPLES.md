@@ -1,6 +1,6 @@
 # Examples
 
-This document provides comprehensive examples of how to use the Aspect framework in different scenarios.
+This document provides comprehensive examples of how to use the Aspectly framework in different scenarios.
 
 ## Table of Contents
 
@@ -18,11 +18,11 @@ This document provides comprehensive examples of how to use the Aspect framework
 ```tsx
 import React, { useEffect, useState } from 'react';
 import { View, Button, Text, StyleSheet } from 'react-native';
-import { useAspectWebView } from '@aspect/react-native';
+import { useAspectlyWebView } from '@aspectly/react-native';
 
 function App() {
   const [messages, setMessages] = useState<string[]>([]);
-  const [bridge, loaded, WebViewComponent] = useAspectWebView({
+  const [bridge, loaded, WebViewComponent] = useAspectlyWebView({
     url: 'https://your-web-app.com'
   });
 
@@ -106,14 +106,14 @@ const styles = StyleSheet.create({
 
 ```tsx
 import React, { useEffect, useState } from 'react';
-import { AspectBridge } from '@aspect/core';
+import { AspectlyBridge } from '@aspectly/core';
 
 function WebApp() {
   const [user, setUser] = useState(null);
   const [appData, setAppData] = useState(null);
   const [messages, setMessages] = useState([]);
 
-  const bridge = new AspectBridge();
+  const bridge = new AspectlyBridge();
 
   useEffect(() => {
     // Initialize bridge with handlers
@@ -211,11 +211,11 @@ function WebApp() {
 
 ```tsx
 import React, { useEffect, useState } from 'react';
-import { useAspectIframe } from '@aspect/web';
+import { useAspectlyIframe } from '@aspectly/web';
 
 function ParentApp() {
   const [notifications, setNotifications] = useState([]);
-  const [bridge, loaded, IframeComponent] = useAspectIframe({
+  const [bridge, loaded, IframeComponent] = useAspectlyIframe({
     url: 'https://your-iframe-content.com'
   });
 
@@ -307,13 +307,13 @@ function ParentApp() {
 
 ```tsx
 import React, { useEffect, useState } from 'react';
-import { AspectBridge } from '@aspect/core';
+import { AspectlyBridge } from '@aspectly/core';
 
 function IframeContent() {
   const [content, setContent] = useState({ title: 'Default Title', content: 'Default content' });
   const [status, setStatus] = useState('idle');
 
-  const bridge = new AspectBridge();
+  const bridge = new AspectlyBridge();
 
   useEffect(() => {
     bridge.init({
@@ -686,4 +686,4 @@ bridge.init({
 });
 ```
 
-These examples demonstrate the flexibility and power of the Aspect framework for building sophisticated cross-platform applications with seamless communication between native and web components.
+These examples demonstrate the flexibility and power of the Aspectly framework for building sophisticated cross-platform applications with seamless communication between native and web components.

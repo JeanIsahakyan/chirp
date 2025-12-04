@@ -231,4 +231,4 @@ Contributions are welcome! Please read our [Contributing Guide](./CONTRIBUTING.m
 
 ## License
 
-MIT © [Jean Isahakyan](https://github.com/JeanIsahakyan)
+MIT © [Zhan Isaakian](https://github.com/JeanIsahakyan)

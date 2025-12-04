@@ -4,7 +4,7 @@
   "private": true,
   "description": "Aspectly - A powerful communication bridge framework for React Native, Web, and iframes",
   "repository": "https://github.com/JeanIsahakyan/aspectly",
-  "author": "Jean Isahakyan <jeanisahkyan@gmail.com> (https://github.com/JeanIsahakyan)",
+  "author": "Zhan Isaakian <jeanisahkyan@gmail.com> (https://github.com/JeanIsahakyan)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/JeanIsahakyan/aspectly/issues"

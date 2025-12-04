@@ -1,6 +1,6 @@
 # API Reference
 
-Complete API documentation for all Chirp packages.
+Complete API documentation for all Aspect packages.
 
 ## Table of Contents
 
@@ -16,14 +16,14 @@ Complete API documentation for all Chirp packages.
 
 The core package provides the bridge implementation for use inside iframes and WebViews.
 
-### ChirpBridge
+### AspectBridge
 
 The main class for creating a bridge instance inside embedded content.
 
 ```typescript
-import { ChirpBridge } from '@aspect/core';
+import { AspectBridge } from '@aspect/core';
 
-const bridge = new ChirpBridge(options?: BridgeOptions);
+const bridge = new AspectBridge(options?: BridgeOptions);
 ```
 
 #### Constructor Options
@@ -81,12 +81,12 @@ Cleanup bridge subscriptions.
 
 React hooks for embedding iframes in web applications.
 
-### useChirpIframe
+### useAspectIframe
 
 ```typescript
-import { useChirpIframe } from '@aspect/web';
+import { useAspectIframe } from '@aspect/web';
 
-const [bridge, loaded, IframeComponent] = useChirpIframe({
+const [bridge, loaded, IframeComponent] = useAspectIframe({
   url: 'https://widget.example.com',
   timeout: 100000 // optional
 });
@@ -113,12 +113,12 @@ const [bridge, loaded, IframeComponent] = useChirpIframe({
 
 React hooks for React Native WebView integration.
 
-### useChirpWebView
+### useAspectWebView
 
 ```typescript
-import { useChirpWebView } from '@aspect/react-native';
+import { useAspectWebView } from '@aspect/react-native';
 
-const [bridge, loaded, WebViewComponent] = useChirpWebView({
+const [bridge, loaded, WebViewComponent] = useAspectWebView({
   url: 'https://webapp.example.com',
   timeout: 100000 // optional
 });
@@ -132,10 +132,10 @@ Same API as `@aspect/web` but renders a WebView instead of iframe.
 
 Universal hooks for Expo and React Native Web apps.
 
-### useChirpWebView
+### useAspectWebView
 
 ```typescript
-import { useChirpWebView } from '@aspect/react-native-web';
+import { useAspectWebView } from '@aspect/react-native-web';
 ```
 
 Same API, works on Web (iframe), iOS and Android (WebView).

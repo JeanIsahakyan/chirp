@@ -25,7 +25,7 @@ php -S localhost:3001
 
 ## What This Demonstrates
 
-- Using the global `window.chirpBridge` instance
+- Using the global `window.aspectBridge` instance
 - Initializing the bridge with handlers
 - Sending messages to the parent container
 - Receiving messages from the parent

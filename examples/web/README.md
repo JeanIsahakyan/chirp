@@ -28,7 +28,7 @@ pnpm dev
 
 ## What This Demonstrates
 
-- Using `useChirpIframe` hook to embed an iframe
+- Using `useAspectIframe` hook to embed an iframe
 - Initializing handlers for messages from the iframe
 - Sending messages to the iframe
 - Subscribing to bridge events

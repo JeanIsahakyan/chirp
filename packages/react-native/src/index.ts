@@ -1,16 +1,16 @@
 // Main exports
-export { useChirpWebView } from './useChirpWebView';
+export { useAspectWebView } from './useAspectWebView';
 
 // Type exports
 export type {
-  UseChirpWebViewOptions,
-  UseChirpWebViewReturn,
-  ChirpWebViewProps,
-} from './useChirpWebView';
+  UseAspectWebViewOptions,
+  UseAspectWebViewReturn,
+  AspectWebViewProps,
+} from './useAspectWebView';
 
 // Re-export core types for convenience
 export {
-  ChirpBridge,
+  AspectBridge,
   BridgeBase,
   BridgeErrorType,
   BridgeEventType,

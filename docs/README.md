@@ -1,6 +1,6 @@
-# Chirp Documentation
+# Aspect Documentation
 
-Welcome to the Chirp framework documentation! This guide will help you understand and use Chirp for seamless communication between React Native WebViews, web iframes, and applications.
+Welcome to the Aspect framework documentation! This guide will help you understand and use Aspect for seamless communication between React Native WebViews, web iframes, and applications.
 
 ## 📚 Documentation Index
 
@@ -46,7 +46,7 @@ docs/
 
 ## 🎯 Framework Goals
 
-Chirp is designed to solve the complex problem of communication between different environments:
+Aspect is designed to solve the complex problem of communication between different environments:
 
 - **React Native ↔ WebView**: Seamless communication between native apps and web content
 - **Parent Window ↔ Iframe**: Reliable iframe communication in web applications
@@ -130,8 +130,8 @@ This documentation is maintained alongside the codebase. When contributing:
 
 ## 📄 License
 
-This documentation is part of the Chirp project and is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
+This documentation is part of the Aspect project and is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
 
 ---
 
-**Happy coding with Chirp! 🐦**
+**Happy coding with Aspect!**

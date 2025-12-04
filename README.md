@@ -1,4 +1,4 @@
-# Chirp
+# Aspect
 
 A powerful, type-safe communication bridge framework for React Native, Web, and iframes.
 
@@ -6,7 +6,7 @@ A powerful, type-safe communication bridge framework for React Native, Web, and 
 
 ## Overview
 
-Chirp enables seamless bidirectional communication between:
+Aspect enables seamless bidirectional communication between:
 - **React Native apps** and **WebViews**
 - **Web pages** and **iframes**
 - **Universal apps** (React Native Web / Expo) and embedded content
@@ -27,10 +27,10 @@ Chirp enables seamless bidirectional communication between:
 **Parent page (host):**
 
 ```tsx
-import { useChirpIframe } from '@aspect/web';
+import { useAspectIframe } from '@aspect/web';
 
 function App() {
-  const [bridge, loaded, Iframe] = useChirpIframe({
+  const [bridge, loaded, Iframe] = useAspectIframe({
     url: 'https://widget.example.com'
   });
 
@@ -49,9 +49,9 @@ function App() {
 **iframe content (widget):**
 
 ```typescript
-import { ChirpBridge } from '@aspect/core';
+import { AspectBridge } from '@aspect/core';
 
-const bridge = new ChirpBridge();
+const bridge = new AspectBridge();
 await bridge.init({
   greet: async (params) => ({ message: `Hello, ${params.name}!` })
 });
@@ -64,10 +64,10 @@ const user = await bridge.send('getUserData');
 **React Native app:**
 
 ```tsx
-import { useChirpWebView } from '@aspect/react-native';
+import { useAspectWebView } from '@aspect/react-native';
 
 function App() {
-  const [bridge, loaded, WebView] = useChirpWebView({
+  const [bridge, loaded, WebView] = useAspectWebView({
     url: 'https://webapp.example.com'
   });
 
@@ -89,9 +89,9 @@ function App() {
 **Web content (inside WebView):**
 
 ```typescript
-import { ChirpBridge } from '@aspect/core';
+import { AspectBridge } from '@aspect/core';
 
-const bridge = new ChirpBridge();
+const bridge = new AspectBridge();
 await bridge.init();
 
 const device = await bridge.send('getDeviceInfo');
@@ -101,11 +101,11 @@ console.log(`Running on ${device.platform}`);
 ### Scenario 3: Universal app (Expo / React Native Web)
 
 ```tsx
-import { useChirpWebView } from '@aspect/react-native-web';
+import { useAspectWebView } from '@aspect/react-native-web';
 
 // Same API works on iOS, Android, and Web!
 function App() {
-  const [bridge, loaded, WebView] = useChirpWebView({
+  const [bridge, loaded, WebView] = useAspectWebView({
     url: 'https://widget.example.com'
   });
 
@@ -131,7 +131,7 @@ function App() {
 │  ┌─────────────────────────────────────────────────────────────┐ │
 │  │ @aspect/web | @aspect/react-native | @aspect/react-native-web│ │
 │  │                                                              │ │
-│  │  • useChirpIframe() / useChirpWebView()                     │ │
+│  │  • useAspectIframe() / useAspectWebView()                   │ │
 │  │  • Register handlers                                         │ │
 │  │  • Send requests                                             │ │
 │  └──────────────────────────┬──────────────────────────────────┘ │
@@ -143,7 +143,7 @@ function App() {
 │  │  ┌───────────────────────────────────────────────────────┐  │ │
 │  │  │  @aspect/core                                          │  │ │
 │  │  │                                                        │  │ │
-│  │  │  • ChirpBridge                                        │  │ │
+│  │  │  • AspectBridge                                       │  │ │
 │  │  │  • Register handlers                                   │  │ │
 │  │  │  • Send requests                                       │  │ │
 │  │  └───────────────────────────────────────────────────────┘  │ │

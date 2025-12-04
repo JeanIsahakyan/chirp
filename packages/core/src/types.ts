@@ -116,7 +116,8 @@ export type BridgeHandler<TParams = object, TResult = unknown> = (
  * Map of method names to their handlers
  */
 export interface BridgeHandlers {
-  [key: string]: BridgeHandler;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: BridgeHandler<any, any>;
 }
 
 /**

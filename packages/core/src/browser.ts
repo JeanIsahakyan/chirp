@@ -1,27 +1,27 @@
 /**
  * Browser entry point for direct script inclusion.
- * Creates a global `chirpBridge` instance on the window object.
+ * Creates a global `aspectBridge` instance on the window object.
  *
  * @example
  * ```html
  * <script src="https://unpkg.com/@aspect/core/dist/browser.js"></script>
  * <script>
- *   window.chirpBridge.init({
+ *   window.aspectBridge.init({
  *     greet: async (params) => ({ message: 'Hello!' })
  *   });
  * </script>
  * ```
  */
-import { ChirpBridge } from './ChirpBridge';
+import { AspectBridge } from './AspectBridge';
 
 declare global {
   interface Window {
-    chirpBridge: ChirpBridge;
+    aspectBridge: AspectBridge;
   }
 }
 
 if (typeof window !== 'undefined') {
-  window.chirpBridge = new ChirpBridge();
+  window.aspectBridge = new AspectBridge();
 }
 
-export { ChirpBridge };
+export { AspectBridge };

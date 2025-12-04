@@ -28,10 +28,10 @@ yarn add @aspect/core
 ### Inside a WebView or iframe
 
 ```typescript
-import { ChirpBridge } from '@aspect/core';
+import { AspectBridge } from '@aspect/core';
 
 // Create a bridge instance
-const bridge = new ChirpBridge();
+const bridge = new AspectBridge();
 
 // Initialize with handlers for incoming requests
 await bridge.init({
@@ -53,7 +53,7 @@ console.log(result);
 ```html
 <script src="https://unpkg.com/@aspect/core/dist/browser.js"></script>
 <script>
-  window.chirpBridge.init({
+  window.aspectBridge.init({
     greet: async (params) => ({ message: `Hello, ${params.name}!` })
   }).then(() => {
     console.log('Bridge initialized');
@@ -63,14 +63,14 @@ console.log(result);
 
 ## API Reference
 
-### ChirpBridge
+### AspectBridge
 
 The main class for bridge communication.
 
 #### Constructor
 
 ```typescript
-const bridge = new ChirpBridge(options?: BridgeOptions);
+const bridge = new AspectBridge(options?: BridgeOptions);
 ```
 
 **Options:**
@@ -175,7 +175,7 @@ The package consists of four layers:
 1. **BridgeCore** - Low-level platform detection and message serialization
 2. **BridgeInternal** - Protocol management and request/response lifecycle
 3. **BridgeBase** - Clean public API interface
-4. **ChirpBridge** - Main entry point composing all layers
+4. **AspectBridge** - Main entry point composing all layers
 
 ## Related Packages
 

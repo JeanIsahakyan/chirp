@@ -4,7 +4,7 @@ Guide for migrating from the legacy single-package `@jeanisahakyan/chirp` to the
 
 ## Overview
 
-The Chirp library has been restructured into a monorepo with multiple focused packages:
+The Aspect library has been restructured into a monorepo with multiple focused packages:
 
 | Old | New | Use Case |
 |-----|-----|----------|
@@ -43,42 +43,42 @@ npm install @aspect/react-native  # For React Native
 
 ### Step 3: Update Imports
 
-#### For ChirpBridge (Inside WebView/iframe)
+#### For AspectBridge (Inside WebView/iframe)
 
 ```diff
 - import { ChirpBridge } from '@jeanisahakyan/chirp';
-+ import { ChirpBridge } from '@aspect/core';
++ import { AspectBridge } from '@aspect/core';
 
-const bridge = new ChirpBridge();
+const bridge = new AspectBridge();
 ```
 
-#### For useChirpWebView (React Native)
+#### For useAspectWebView (React Native)
 
 ```diff
 - import { useChirpWebView } from '@jeanisahakyan/chirp';
-+ import { useChirpWebView } from '@aspect/react-native';
++ import { useAspectWebView } from '@aspect/react-native';
 
 function App() {
 -  const [bridge, loaded, WebView] = useChirpWebView({
 -    webview_url: 'https://example.com'
 -  });
-+  const [bridge, loaded, WebView] = useChirpWebView({
++  const [bridge, loaded, WebView] = useAspectWebView({
 +    url: 'https://example.com'  // Note: 'webview_url' → 'url'
 +  });
 }
 ```
 
-#### For useChirpBrowserIframe (Web)
+#### For useAspectIframe (Web)
 
 ```diff
 - import { useChirpBrowserIframe } from '@jeanisahakyan/chirp';
-+ import { useChirpIframe } from '@aspect/web';
++ import { useAspectIframe } from '@aspect/web';
 
 function App() {
 -  const [bridge, loaded, Iframe] = useChirpBrowserIframe({
 -    webview_url: 'https://example.com'
 -  });
-+  const [bridge, loaded, Iframe] = useChirpIframe({
++  const [bridge, loaded, Iframe] = useAspectIframe({
 +    url: 'https://example.com'  // Note: 'webview_url' → 'url'
 +  });
 }
@@ -90,7 +90,7 @@ The options object has been simplified:
 
 ```diff
 // Old
-const [bridge, loaded, Component] = useChirpWebView({
+const [bridge, loaded, Component] = useAspectWebView({
 -  webview_url: 'https://example.com'
 +  url: 'https://example.com'
 });
@@ -160,7 +160,7 @@ Make sure you've installed the correct package for your use case.
 The option has been renamed to `url`. Update your code:
 
 ```typescript
-useChirpIframe({ url: 'https://...' })
+useAspectIframe({ url: 'https://...' })
 ```
 
 ### "Bridge methods not working"

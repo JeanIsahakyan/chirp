@@ -1,6 +1,6 @@
 # @aspect/react-native
 
-React Native WebView integration for the Chirp bridge - communicate with web content in your React Native app.
+React Native WebView integration for the Aspect bridge - communicate with web content in your React Native app.
 
 ## Installation
 
@@ -32,10 +32,10 @@ cd ios && pod install
 ```tsx
 import React, { useEffect } from 'react';
 import { View, Button, Platform } from 'react-native';
-import { useChirpWebView } from '@aspect/react-native';
+import { useAspectWebView } from '@aspect/react-native';
 
 function App() {
-  const [bridge, loaded, WebView] = useChirpWebView({
+  const [bridge, loaded, WebView] = useAspectWebView({
     url: 'https://example.com/app'
   });
 
@@ -83,9 +83,9 @@ The web content should use `@aspect/core`:
 
 ```typescript
 // In your web app loaded in the WebView
-import { ChirpBridge } from '@aspect/core';
+import { AspectBridge } from '@aspect/core';
 
-const bridge = new ChirpBridge();
+const bridge = new AspectBridge();
 
 // Initialize with handlers
 await bridge.init({
@@ -104,10 +104,10 @@ await bridge.send('showAlert', { message: 'Hello from web!' });
 
 ## API Reference
 
-### useChirpWebView
+### useAspectWebView
 
 ```typescript
-const [bridge, loaded, WebViewComponent] = useChirpWebView(options);
+const [bridge, loaded, WebViewComponent] = useAspectWebView(options);
 ```
 
 #### Options

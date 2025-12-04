@@ -9,7 +9,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useChirpWebView, BridgeResultEvent } from '@aspect/react-native-web';
+import { useAspectWebView, BridgeResultEvent } from '@aspect/react-native-web';
 
 interface LogEntry {
   time: string;
@@ -25,7 +25,7 @@ export default function App() {
     // For iOS simulator, use your machine's IP address
   });
 
-  const [bridge, loaded, WebView] = useChirpWebView({
+  const [bridge, loaded, WebView] = useAspectWebView({
     url: widgetUrl!,
   });
 
@@ -104,7 +104,7 @@ export default function App() {
       <StatusBar style="auto" />
 
       <View style={styles.header}>
-        <Text style={styles.title}>Chirp Example</Text>
+        <Text style={styles.title}>Aspect Example</Text>
         <Text style={styles.subtitle}>Platform: {Platform.OS}</Text>
       </View>
 

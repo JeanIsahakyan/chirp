@@ -15,9 +15,9 @@ import {
 } from '@aspect/core';
 
 /**
- * Options for the useChirpWebView hook
+ * Options for the useAspectWebView hook
  */
-export interface UseChirpWebViewOptions extends BridgeOptions {
+export interface UseAspectWebViewOptions extends BridgeOptions {
   /** URL to load in the WebView */
   url: string;
 }
@@ -25,32 +25,32 @@ export interface UseChirpWebViewOptions extends BridgeOptions {
 /**
  * Props for the WebView component
  */
-export interface ChirpWebViewProps extends Omit<WebViewProps, 'source' | 'onMessage' | 'onLoad' | 'ref'> {
+export interface AspectWebViewProps extends Omit<WebViewProps, 'source' | 'onMessage' | 'onLoad' | 'ref'> {
   /** Optional error handler */
   onError?: (error: unknown) => void;
 }
 
 /**
- * Return type for useChirpWebView hook
+ * Return type for useAspectWebView hook
  */
-export type UseChirpWebViewReturn = [
+export type UseAspectWebViewReturn = [
   /** Bridge instance for communication */
   bridge: BridgeBase,
   /** Whether the WebView has loaded */
   loaded: boolean,
   /** React component to render the WebView */
-  WebViewComponent: FunctionComponent<ChirpWebViewProps>
+  WebViewComponent: FunctionComponent<AspectWebViewProps>
 ];
 
 /**
- * React hook for embedding a WebView and communicating with it via Chirp bridge.
+ * React hook for embedding a WebView and communicating with it via Aspect bridge.
  *
  * @example
  * ```tsx
- * import { useChirpWebView } from '@aspect/react-native';
+ * import { useAspectWebView } from '@aspect/react-native';
  *
  * function App() {
- *   const [bridge, loaded, WebView] = useChirpWebView({
+ *   const [bridge, loaded, WebView] = useAspectWebView({
  *     url: 'https://example.com/app'
  *   });
  *
@@ -79,10 +79,10 @@ export type UseChirpWebViewReturn = [
  * }
  * ```
  */
-export const useChirpWebView = ({
+export const useAspectWebView = ({
   url,
   timeout,
-}: UseChirpWebViewOptions): UseChirpWebViewReturn => {
+}: UseAspectWebViewOptions): UseAspectWebViewReturn => {
   const webViewRef = useRef<WebView>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
@@ -103,7 +103,9 @@ export const useChirpWebView = ({
 
   const onMessage = useMemo(
     () => {
-      const listener = BridgeCore.webViewListener(bridge.handleCoreEvent);
+      const listener = BridgeCore.webViewListener(
+        bridge.handleCoreEvent as (event: unknown) => void
+      );
       return (event: WebViewMessageEvent) => {
         listener({
           nativeEvent: {
@@ -115,8 +117,8 @@ export const useChirpWebView = ({
     [bridge]
   );
 
-  const WebViewComponent: FunctionComponent<ChirpWebViewProps> = useCallback(
-    ({ style, onError, ...props }: ChirpWebViewProps) => {
+  const WebViewComponent: FunctionComponent<AspectWebViewProps> = useCallback(
+    ({ style, onError, ...props }: AspectWebViewProps) => {
       return (
         <WebView
           {...props}

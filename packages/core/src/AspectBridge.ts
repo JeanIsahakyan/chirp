@@ -4,14 +4,14 @@ import { BridgeBase } from './BridgeBase';
 import type { BridgeOptions } from './types';
 
 /**
- * ChirpBridge is the main entry point for bridge communication.
+ * AspectBridge is the main entry point for bridge communication.
  * Use this class when running inside a WebView or iframe that needs
  * to communicate with its parent container.
  *
  * @example
  * ```typescript
  * // Inside a WebView or iframe
- * const bridge = new ChirpBridge();
+ * const bridge = new AspectBridge();
  *
  * // Initialize with handlers
  * await bridge.init({
@@ -24,19 +24,21 @@ import type { BridgeOptions } from './types';
  * const result = await bridge.send('someMethod', { data: 'value' });
  * ```
  */
-export class ChirpBridge extends BridgeBase {
-  private unsubscribe: VoidFunction;
+export class AspectBridge extends BridgeBase {
+  private cleanupSubscription: VoidFunction;
 
   constructor(options?: BridgeOptions) {
     const bridge = new BridgeInternal(BridgeCore.sendEvent, options);
     super(bridge);
-    this.unsubscribe = BridgeCore.subscribe(bridge.handleCoreEvent);
+    this.cleanupSubscription = BridgeCore.subscribe(
+      bridge.handleCoreEvent as (event: unknown) => void
+    );
   }
 
   /**
    * Cleanup bridge subscriptions
    */
   public destroy = (): void => {
-    this.unsubscribe();
+    this.cleanupSubscription();
   };
 }

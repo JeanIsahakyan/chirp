@@ -6,59 +6,71 @@ We want this community to be friendly and respectful to each other. Please follo
 
 ## Development workflow
 
-To get started with the project, run `yarn` in the root directory to install the required dependencies for each package:
+This is a monorepo managed with [pnpm](https://pnpm.io/). To get started with the project, run `pnpm install` in the root directory to install the required dependencies for each package:
 
 ```sh
-yarn
+pnpm install
 ```
 
-> While it's possible to use [`npm`](https://github.com/npm/cli), the tooling is built around [`yarn`](https://classic.yarnpkg.com/), so you'll have an easier time if you use `yarn` for development.
+### Building packages
 
-While developing, you can run the [example app](/example/) to test your changes. Any changes you make in your library's JavaScript code will be reflected in the example app without a rebuild. If you change any native code, then you'll need to rebuild the example app.
-
-To start the packager:
+To build all packages:
 
 ```sh
-yarn example start
+pnpm build
 ```
 
-To run the example app on Android:
+To build a specific package:
 
 ```sh
-yarn example android
+pnpm build:core
+pnpm build:web
+pnpm build:react-native
+pnpm build:react-native-web
 ```
 
-To run the example app on iOS:
+### Running in development mode
+
+To run all packages in watch mode:
 
 ```sh
-yarn example ios
+pnpm dev
 ```
 
-To run the example app on Web:
-
-```sh
-yarn example web
-```
+### Type checking and linting
 
 Make sure your code passes TypeScript and ESLint. Run the following to verify:
 
 ```sh
-yarn typescript
-yarn lint
+pnpm typecheck
+pnpm lint
 ```
 
 To fix formatting errors, run the following:
 
 ```sh
-yarn lint --fix
+pnpm lint --fix
 ```
 
-Remember to add tests for your change if possible. Run the unit tests by:
+### Running tests
+
+We use [Vitest](https://vitest.dev/) for testing. Run the unit tests by:
 
 ```sh
-yarn test
+pnpm test
 ```
 
+To run tests in watch mode:
+
+```sh
+pnpm test:watch
+```
+
+To run tests with coverage:
+
+```sh
+pnpm test:coverage
+```
 
 ### Commit message convention
 
@@ -77,31 +89,34 @@ Our pre-commit hooks verify that your commit message matches this format when co
 
 [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [TypeScript](https://www.typescriptlang.org/)
 
-We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint](https://eslint.org/) with [Prettier](https://prettier.io/) for linting and formatting the code, and [Jest](https://jestjs.io/) for testing.
+We use [TypeScript](https://www.typescriptlang.org/) for type checking, [ESLint](https://eslint.org/) with [Prettier](https://prettier.io/) for linting and formatting the code, and [Vitest](https://vitest.dev/) for testing.
 
 Our pre-commit hooks verify that the linter and tests pass when committing.
 
 ### Publishing to npm
 
-We use [release-it](https://github.com/release-it/release-it) to make it easier to publish new versions. It handles common tasks like bumping version based on semver, creating tags and releases etc.
+We use [Changesets](https://github.com/changesets/changesets) for versioning and publishing packages. The release process is automated via GitHub Actions.
 
-To publish new versions, run the following:
+To create a changeset for your changes:
 
 ```sh
-yarn release
+pnpm changeset
 ```
+
+This will prompt you to select which packages have changed and what type of version bump is needed.
 
 ### Scripts
 
 The `package.json` file contains various scripts for common tasks:
 
-- `yarn bootstrap`: setup project by installing all dependencies and pods.
-- `yarn typescript`: type-check files with TypeScript.
-- `yarn lint`: lint files with ESLint.
-- `yarn test`: run unit tests with Jest.
-- `yarn example start`: start the Metro server for the example app.
-- `yarn example android`: run the example app on Android.
-- `yarn example ios`: run the example app on iOS.
+- `pnpm build`: build all packages.
+- `pnpm dev`: run all packages in watch mode.
+- `pnpm typecheck`: type-check files with TypeScript.
+- `pnpm lint`: lint files with ESLint.
+- `pnpm test`: run unit tests with Vitest.
+- `pnpm test:watch`: run tests in watch mode.
+- `pnpm test:coverage`: run tests with coverage reporting.
+- `pnpm clean`: clean all build artifacts and node_modules.
 
 ### Sending a pull request
 

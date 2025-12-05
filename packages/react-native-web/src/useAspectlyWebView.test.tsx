@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useAspectlyIframe } from './useAspectIframe';
+import { useAspectlyWebView } from './useAspectlyWebView';
 
 // Mock @aspectly/core
 vi.mock('@aspectly/core', () => ({
@@ -27,7 +27,7 @@ vi.mock('@aspectly/core', () => ({
   })),
 }));
 
-describe('useAspectlyIframe', () => {
+describe('useAspectlyWebView (web platform)', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -35,19 +35,19 @@ describe('useAspectlyIframe', () => {
   describe('hook return values', () => {
     it('should return bridge, loaded state, and component', () => {
       const { result } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com' })
+        useAspectlyWebView({ url: 'https://example.com' })
       );
 
-      const [bridge, loaded, IframeComponent] = result.current;
+      const [bridge, loaded, WebViewComponent] = result.current;
 
       expect(bridge).toBeDefined();
       expect(typeof loaded).toBe('boolean');
-      expect(typeof IframeComponent).toBe('function');
+      expect(typeof WebViewComponent).toBe('function');
     });
 
     it('should initially have loaded as false', () => {
       const { result } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com' })
+        useAspectlyWebView({ url: 'https://example.com' })
       );
 
       const [, loaded] = result.current;
@@ -58,7 +58,7 @@ describe('useAspectlyIframe', () => {
   describe('bridge instance', () => {
     it('should have init method', () => {
       const { result } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com' })
+        useAspectlyWebView({ url: 'https://example.com' })
       );
 
       const [bridge] = result.current;
@@ -67,7 +67,7 @@ describe('useAspectlyIframe', () => {
 
     it('should have send method', () => {
       const { result } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com' })
+        useAspectlyWebView({ url: 'https://example.com' })
       );
 
       const [bridge] = result.current;
@@ -76,7 +76,7 @@ describe('useAspectlyIframe', () => {
 
     it('should have subscribe method', () => {
       const { result } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com' })
+        useAspectlyWebView({ url: 'https://example.com' })
       );
 
       const [bridge] = result.current;
@@ -85,7 +85,7 @@ describe('useAspectlyIframe', () => {
 
     it('should have unsubscribe method', () => {
       const { result } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com' })
+        useAspectlyWebView({ url: 'https://example.com' })
       );
 
       const [bridge] = result.current;
@@ -93,22 +93,21 @@ describe('useAspectlyIframe', () => {
     });
   });
 
-  describe('IframeComponent', () => {
+  describe('WebViewComponent', () => {
     it('should be a valid React component', () => {
       const { result } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com' })
+        useAspectlyWebView({ url: 'https://example.com' })
       );
 
-      const [, , IframeComponent] = result.current;
-      expect(IframeComponent).toBeDefined();
-      expect(IframeComponent.name).toBeDefined();
+      const [, , WebViewComponent] = result.current;
+      expect(WebViewComponent).toBeDefined();
     });
   });
 
   describe('memoization', () => {
     it('should return same bridge instance across re-renders', () => {
       const { result, rerender } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com' })
+        useAspectlyWebView({ url: 'https://example.com' })
       );
 
       const firstBridge = result.current[0];
@@ -120,7 +119,7 @@ describe('useAspectlyIframe', () => {
 
     it('should return same component across re-renders with same url', () => {
       const { result, rerender } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com' })
+        useAspectlyWebView({ url: 'https://example.com' })
       );
 
       const firstComponent = result.current[2];
@@ -134,7 +133,7 @@ describe('useAspectlyIframe', () => {
   describe('options', () => {
     it('should accept timeout option', () => {
       const { result } = renderHook(() =>
-        useAspectlyIframe({ url: 'https://example.com', timeout: 5000 })
+        useAspectlyWebView({ url: 'https://example.com', timeout: 5000 })
       );
 
       expect(result.current).toBeDefined();

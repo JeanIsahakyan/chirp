@@ -1,12 +1,12 @@
 // Main exports
-export { useAspectlyWebView } from './useAspectWebView';
+export { useAspectlyWebView } from './useAspectlyWebView';
 
 // Type exports
 export type {
   UseAspectlyWebViewOptions,
   UseAspectlyWebViewReturn,
   AspectlyWebViewProps,
-} from './useAspectWebView';
+} from './useAspectlyWebView';
 
 // Re-export core types for convenience
 export {

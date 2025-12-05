@@ -21,5 +21,5 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false
   },
-  "exclude": ["node_modules", "**/dist/**", "**/lib/**", "**/*.test.ts"]
+  "exclude": ["node_modules", "**/dist/**", "**/lib/**", "**/*.test.ts", "landing"]
 }

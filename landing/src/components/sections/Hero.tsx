@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Github, Sparkles } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
+import { Button } from '../ui/button'
+import { Badge } from '../ui/badge'
 import { AnimatedGridPattern, BlurFade, Particles } from '../magicui'
 
 export function Hero() {

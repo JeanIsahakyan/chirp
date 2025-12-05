@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Layers, Network, Smartphone, Globe, Monitor } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { AnimatedBeam, BlurFade } from '../magicui'
 import { cn } from '../../lib/utils'
 

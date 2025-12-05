@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronRight, Code2, FileCode } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { CodeBlock } from '@/components/ui/code-block'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
+import { Badge } from '../ui/badge'
+import { CodeBlock } from '../ui/code-block'
 import { BlurFade } from '../magicui'
 import { cn } from '../../lib/utils'
 

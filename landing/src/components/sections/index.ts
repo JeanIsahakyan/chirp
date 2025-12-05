@@ -1,0 +1,8 @@
+export { Hero } from './Hero'
+export { Features } from './Features'
+export { Installation } from './Installation'
+export { Examples } from './Examples'
+export { ApiDocs } from './ApiDocs'
+export { Architecture } from './Architecture'
+export { Footer } from './Footer'
+export { Navbar } from './Navbar'

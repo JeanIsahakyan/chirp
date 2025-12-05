@@ -173,4 +173,4 @@ If you encounter issues during migration:
 
 1. Check the [API documentation](./API.md)
 2. Review the [examples](./EXAMPLES.md)
-3. Open an issue on [GitHub](https://github.com/JeanIsahakyan/chirp/issues)
+3. Open an issue on [GitHub](https://github.com/JeanIsahakyan/aspectly/issues)

@@ -4,7 +4,7 @@
   "commit": false,
   "fixed": [],
   "linked": [
-    ["@aspect/core", "@aspect/web", "@aspect/react-native", "@aspect/react-native-web"]
+    ["@aspectly/core", "@aspectly/web", "@aspectly/react-native", "@aspectly/react-native-web"]
   ],
   "access": "public",
   "baseBranch": "main",

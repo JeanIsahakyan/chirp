@@ -9,5 +9,5 @@ export default defineConfig({
   clean: true,
   treeshake: true,
   minify: false,
-  external: ['react', '@aspect/core'],
+  external: ['react', '@aspectly/core'],
 });

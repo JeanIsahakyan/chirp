@@ -1,12 +1,12 @@
 // Main exports
-export { useAspectlyIframe } from './useAspectIframe';
+export { useAspectlyIframe } from './useAspectlyIframe';
 
 // Type exports
 export type {
   UseAspectlyIframeOptions,
   UseAspectlyIframeReturn,
   AspectlyIframeProps,
-} from './useAspectIframe';
+} from './useAspectlyIframe';
 
 // Re-export core types for convenience
 export {

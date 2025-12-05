@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@aspect/core Example - Widget</title>
+  <title>@aspectly/core Example - Widget</title>
   <style>
     * {
       box-sizing: border-box;
@@ -92,7 +92,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>@aspect/core Widget Example</h1>
+    <h1>@aspectly/core Widget Example</h1>
 
     <div class="card">
       <div class="status">
@@ -121,7 +121,7 @@
     </div>
   </div>
 
-  <script src="https://unpkg.com/@aspect/core/dist/browser.js"></script>
+  <script src="https://unpkg.com/@aspectly/core/dist/browser.js"></script>
   <script>
     const log = document.getElementById('log');
     const statusDot = document.getElementById('statusDot');
@@ -142,7 +142,7 @@
     }
 
     // Get the global bridge instance
-    const bridge = window.aspectBridge;
+    const bridge = window.aspectlyBridge;
 
     // Initialize with handlers
     bridge.init({

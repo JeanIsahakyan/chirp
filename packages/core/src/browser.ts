@@ -12,7 +12,7 @@
  * </script>
  * ```
  */
-import { AspectlyBridge } from './AspectBridge';
+import { AspectlyBridge } from './AspectlyBridge';
 
 declare global {
   interface Window {

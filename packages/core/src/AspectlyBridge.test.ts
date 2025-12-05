@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { AspectlyBridge } from './AspectBridge';
+import { AspectlyBridge } from './AspectlyBridge';
 import { BridgeCore } from './BridgeCore';
 
 // Mock BridgeCore

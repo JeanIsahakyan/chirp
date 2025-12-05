@@ -1,5 +1,5 @@
 import { Github, Twitter, Heart } from 'lucide-react'
-import { BlurFade } from '@/components/magicui'
+import { BlurFade } from '../magicui'
 
 const links = {
   docs: [

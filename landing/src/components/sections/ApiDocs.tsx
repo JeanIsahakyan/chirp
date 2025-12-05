@@ -3,8 +3,8 @@ import { ChevronDown, ChevronRight, Code2, FileCode } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CodeBlock } from '@/components/ui/code-block'
-import { BlurFade } from '@/components/magicui'
-import { cn } from '@/lib/utils'
+import { BlurFade } from '../magicui'
+import { cn } from '../../lib/utils'
 
 interface ApiMethod {
   name: string

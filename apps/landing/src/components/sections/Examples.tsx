@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Smartphone, Globe, Layers } from 'lucide-react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { CodeBlock } from '@/components/ui/code-block'
-import { BlurFade } from '@/components/magicui'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs'
+import { CodeBlock } from '../ui/code-block'
+import { BlurFade } from '../magicui'
 
 const examples = {
   'react-native': {

@@ -6,11 +6,11 @@ on:
     branches:
       - main
     paths:
-      - 'landing/**'
+      - 'apps/landing/**'
       - '.github/workflows/deploy-landing.yml'
   pull_request:
     paths:
-      - 'landing/**'
+      - 'apps/landing/**'
       - '.github/workflows/deploy-landing.yml'
   workflow_dispatch:
 
@@ -28,26 +28,26 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./landing
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
-      - name: Type check
-        run: npx tsc -b
-
-      - name: Build
-        run: npm run build
+      - name: Build landing page
+        run: pnpm build:landing
 
       - name: Setup Pages
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -57,7 +57,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './landing/dist'
+          path: './apps/landing/dist'
 
   deploy:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'

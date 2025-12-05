@@ -10,8 +10,8 @@ import {
   Bug,
   Layers,
 } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { BlurFade } from '@/components/magicui'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
+import { BlurFade } from '../magicui'
 
 const features = [
   {

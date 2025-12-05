@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Github, Sparkles } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { AnimatedGridPattern, BlurFade, Particles } from '@/components/magicui'
+import { ButtonLink } from '../ui/button'
+import { Badge } from '../ui/badge'
+import { AnimatedGridPattern, BlurFade, Particles } from '../magicui'
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Effects */}
       <AnimatedGridPattern
         numSquares={30}
@@ -53,22 +53,20 @@ export function Hero() {
 
           <BlurFade delay={0.4} inView>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="xl" className="gap-2 group" asChild>
-                <a href="#installation">
-                  Get Started
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </a>
-              </Button>
-              <Button size="xl" variant="outline" className="gap-2" asChild>
-                <a
-                  href="https://github.com/JeanIsahakyan/aspectly"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="h-4 w-4" />
-                  View on GitHub
-                </a>
-              </Button>
+              <ButtonLink size="xl" className="group" href="#installation">
+                Get Started
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </ButtonLink>
+              <ButtonLink
+                size="xl"
+                variant="outline"
+                href="https://github.com/JeanIsahakyan/aspectly"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-4 w-4" />
+                View on GitHub
+              </ButtonLink>
             </div>
           </BlurFade>
 

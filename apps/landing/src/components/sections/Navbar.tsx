@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Github } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { ButtonLink } from '../ui/button'
+import { cn } from '../../utils/utils'
 
 const navLinks = [
   { name: 'Features', href: '#features' },
@@ -59,20 +59,19 @@ export function Navbar() {
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" size="sm" asChild>
-              <a
-                href="https://github.com/JeanIsahakyan/aspectly"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="gap-2"
-              >
-                <Github className="h-4 w-4" />
-                GitHub
-              </a>
-            </Button>
-            <Button size="sm" asChild>
-              <a href="#installation">Get Started</a>
-            </Button>
+            <ButtonLink
+              variant="ghost"
+              size="sm"
+              href="https://github.com/JeanIsahakyan/aspectly"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="h-4 w-4" />
+              GitHub
+            </ButtonLink>
+            <ButtonLink size="sm" href="#installation">
+              Get Started
+            </ButtonLink>
           </div>
 
           {/* Mobile Menu Button */}
@@ -112,20 +111,19 @@ export function Navbar() {
                 </a>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t">
-                <Button variant="outline" size="sm" asChild>
-                  <a
-                    href="https://github.com/JeanIsahakyan/aspectly"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="gap-2"
-                  >
-                    <Github className="h-4 w-4" />
-                    GitHub
-                  </a>
-                </Button>
-                <Button size="sm" asChild>
-                  <a href="#installation">Get Started</a>
-                </Button>
+                <ButtonLink
+                  variant="outline"
+                  size="sm"
+                  href="https://github.com/JeanIsahakyan/aspectly"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github className="h-4 w-4" />
+                  GitHub
+                </ButtonLink>
+                <ButtonLink size="sm" href="#installation">
+                  Get Started
+                </ButtonLink>
               </div>
             </div>
           </motion.div>

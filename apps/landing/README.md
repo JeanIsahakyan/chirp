@@ -12,18 +12,20 @@ A modern, responsive landing page for the Aspectly communication bridge framewor
 
 ## Development
 
+From the monorepo root:
+
 ```bash
-# Install dependencies
-npm install
+# Install all dependencies
+pnpm install
 
 # Start development server
-npm run dev
+pnpm --filter aspectly-landing dev
 
 # Build for production
-npm run build
+pnpm build:landing
 
 # Preview production build
-npm run preview
+pnpm --filter aspectly-landing preview
 ```
 
 ## Deployment
@@ -41,7 +43,7 @@ This landing page is configured to be served from `aspectly.js.org`. To complete
 ## Project Structure
 
 ```
-landing/
+apps/landing/
 ├── public/
 │   ├── CNAME              # Custom domain config
 │   └── favicon.svg        # Favicon

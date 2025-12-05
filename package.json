@@ -16,6 +16,7 @@
     "build:web": "pnpm --filter @aspectly/web build",
     "build:react-native": "pnpm --filter @aspectly/react-native build",
     "build:react-native-web": "pnpm --filter @aspectly/react-native-web build",
+    "build:landing": "pnpm --filter aspectly-landing build",
     "dev": "pnpm -r --parallel dev",
     "lint": "pnpm -r lint",
     "typecheck": "pnpm -r typecheck",

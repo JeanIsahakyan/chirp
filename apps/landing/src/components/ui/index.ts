@@ -1,5 +1,5 @@
-export { Button, buttonVariants } from './button'
-export { Badge, badgeVariants } from './badge'
+export { Button, ButtonLink } from './button'
+export { Badge } from './badge'
 export {
   Card,
   CardHeader,

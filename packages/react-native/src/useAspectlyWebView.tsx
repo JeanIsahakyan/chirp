@@ -1,11 +1,13 @@
 import React, {
+  Component,
+  ComponentClass,
   FunctionComponent,
   useCallback,
   useMemo,
   useRef,
   useState,
 } from 'react';
-import { WebView, WebViewProps } from 'react-native-webview';
+import { WebView as BaseWebView, WebViewProps } from 'react-native-webview';
 import type { WebViewMessageEvent } from 'react-native-webview';
 import {
   BridgeCore,
@@ -79,11 +81,17 @@ export type UseAspectlyWebViewReturn = [
  * }
  * ```
  */
+type NativeWebViewInstance = Component<WebViewProps> & {
+  injectJavaScript: (script: string) => void;
+};
+
+const NativeWebView = BaseWebView as unknown as ComponentClass<WebViewProps>;
+
 export const useAspectlyWebView = ({
   url,
   timeout,
 }: UseAspectlyWebViewOptions): UseAspectlyWebViewReturn => {
-  const webViewRef = useRef<WebView>(null);
+  const webViewRef = useRef<NativeWebViewInstance | null>(null);
   const [loaded, setLoaded] = useState<boolean>(false);
 
   const bridge = useMemo(() => {
@@ -120,7 +128,7 @@ export const useAspectlyWebView = ({
   const WebViewComponent: FunctionComponent<AspectlyWebViewProps> = useCallback(
     ({ style, onError, ...props }: AspectlyWebViewProps) => {
       return (
-        <WebView
+        <NativeWebView
           {...props}
           style={style}
           onLoad={onLoad}

@@ -1,6 +1,12 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { BridgeCore } from './BridgeCore';
 
+interface TestWindow extends Window {
+  ReactNativeWebView?: { postMessage: (message: string) => void };
+}
+
+const testWindow = window as TestWindow;
+
 describe('BridgeCore', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -171,11 +177,11 @@ describe('BridgeCore', () => {
         writable: true,
         configurable: true,
       });
-      (window as any).ReactNativeWebView = originalRNW;
+      testWindow.ReactNativeWebView = originalRNW;
     });
 
     it('should send to iframe parent when available', () => {
-      (window as any).ReactNativeWebView = undefined;
+      testWindow.ReactNativeWebView = undefined;
       const mockParent = {
         postMessage: vi.fn(),
       };
@@ -198,7 +204,7 @@ describe('BridgeCore', () => {
       const mockRNW = {
         postMessage: vi.fn(),
       };
-      (window as any).ReactNativeWebView = mockRNW;
+      testWindow.ReactNativeWebView = mockRNW;
 
       const event = { method: 'test' };
       BridgeCore.sendEvent(event);
@@ -207,7 +213,7 @@ describe('BridgeCore', () => {
     });
 
     it('should not send when window.parent === window (top level)', () => {
-      (window as any).ReactNativeWebView = undefined;
+      testWindow.ReactNativeWebView = undefined;
       Object.defineProperty(window, 'parent', {
         value: window,
         writable: true,

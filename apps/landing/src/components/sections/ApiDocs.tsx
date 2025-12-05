@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui
 import { Badge } from '../ui/badge'
 import { CodeBlock } from '../ui/code-block'
 import { BlurFade } from '../magicui'
-import { cn } from '../../lib/utils'
+import { cn } from '../../utils/utils'
 
 interface ApiMethod {
   name: string

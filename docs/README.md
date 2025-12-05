@@ -1,6 +1,6 @@
-# Aspect Documentation
+# Aspectly Documentation
 
-Welcome to the Aspect framework documentation! This guide will help you understand and use Aspect for seamless communication between React Native WebViews, web iframes, and applications.
+Welcome to the Aspectly framework documentation! This guide will help you understand and use Aspectly for seamless communication between React Native WebViews, web iframes, and applications.
 
 ## 📚 Documentation Index
 
@@ -46,7 +46,7 @@ docs/
 
 ## 🎯 Framework Goals
 
-Aspect is designed to solve the complex problem of communication between different environments:
+Aspectly is designed to solve the complex problem of communication between different environments:
 
 - **React Native ↔ WebView**: Seamless communication between native apps and web content
 - **Parent Window ↔ Iframe**: Reliable iframe communication in web applications
@@ -130,8 +130,8 @@ This documentation is maintained alongside the codebase. When contributing:
 
 ## 📄 License
 
-This documentation is part of the Aspect project and is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
+This documentation is part of the Aspectly project and is licensed under the MIT License. See the [LICENSE](../LICENSE) file for details.
 
 ---
 
-**Happy coding with Aspect!**
+**Happy coding with Aspectly!**
